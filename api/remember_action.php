@@ -18,8 +18,8 @@ require_once '/var/www/html/api/recommend_function.php';
  * 1. パラメータ受け取り
  */
 $user_id = isset($_GET['user_id']) ? $_GET['user_id'] : false;
-//$pg_id   = isset($_GET['pg_id'])   ? $_GET['pg_id']   : false;
-$pg_id   = '2014021607567';
+$pg_id   = isset($_GET['pg_id'])   ? $_GET['pg_id']   : false;
+//$pg_id   = '2014021607567';
 
 /*
  * 2. パラメータ分析
