@@ -22,7 +22,8 @@ $pg_id   = isset($_GET['pg_id'])   ? $_GET['pg_id']   : false;
 //$pg_id   = '2014021607567';
 
 if (!$pg_id || !$user_id) {
-    echo 'need param';
+    header("Content-Type: application/json; charset=utf-8");
+    echo "{'status':'error', 'body':'need param'}";
     exit;
 }
 
@@ -41,7 +42,8 @@ foreach ($pg_data as $pg) {
 }
 
 if (!$target_pg) {
-    echo 'pg match error';
+    header("Content-Type: application/json; charset=utf-8");
+    echo "{'status':'error', 'body':'pg match error'}";    
     exit;
 }
 
@@ -60,7 +62,8 @@ if (!$ret) {
     epgxit;
 }
 
-echo 'success';
+header("Content-Type: application/json; charset=utf-8");
+echo "{'status':'success', 'body':''}";
 exit;
 
 
