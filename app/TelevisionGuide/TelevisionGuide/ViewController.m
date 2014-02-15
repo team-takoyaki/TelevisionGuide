@@ -408,7 +408,7 @@
     [_tableView setDataSource:_tableView];
     
 //    AppManager *manager = [AppManager sharedManager];
-    [manager updateRecommendWithTarget:self selector:@selector(onUpdateTableViewCell)];
+//    [manager updateRecommendWithTarget:self selector:@selector(onUpdateTableViewCell)];
    
 	// Do any additional setup after loading the view, typically from a nib.
 }
