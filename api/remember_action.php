@@ -23,7 +23,7 @@ $pg_id   = isset($_GET['pg_id'])   ? $_GET['pg_id']   : false;
 
 if (!$pg_id || !$user_id) {
     header("Content-Type: application/json; charset=utf-8");
-    echo "{'status':'error', 'body':'need param'}";
+    echo '{"status":"error", "body":"need param"}';
     exit;
 }
 
@@ -43,7 +43,7 @@ foreach ($pg_data as $pg) {
 
 if (!$target_pg) {
     header("Content-Type: application/json; charset=utf-8");
-    echo "{'status':'error', 'body':'pg match error'}";    
+    echo '{"status":"error", "body":"pg match error"}';    
     exit;
 }
 
@@ -63,7 +63,7 @@ if (!$ret) {
 }
 
 header("Content-Type: application/json; charset=utf-8");
-echo "{'status':'success', 'body':''}";
+echo '{"status":"success", "body":""}';
 exit;
 
 
