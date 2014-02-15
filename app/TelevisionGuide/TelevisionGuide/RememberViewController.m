@@ -1,21 +1,18 @@
 //
-//  RecomendViewController.m
+//  RememberViewController.m
 //  TelevisionGuide
 //
-//  Created by Takashi Honda on 2014/02/15.
+//  Created by Kashima Takumi on 2014/02/15.
 //  Copyright (c) 2014年 TEAM TAKOYAKI. All rights reserved.
 //
 
-#import "RecommendViewController.h"
-#import "AppManager.h"
-#import "ViewController.h"
+#import "RememberViewController.h"
 
-@interface RecommendViewController ()
+@interface RememberViewController ()
 
 @end
 
-@implementation RecommendViewController
-@synthesize programArray;
+@implementation RememberViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -23,29 +20,13 @@
     if (self) {
         // Custom initialization
     }
-    
     return self;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    
 	// Do any additional setup after loading the view.
-    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
-    [refreshControl addTarget:self action:@selector(onRefresh:) forControlEvents:UIControlEventValueChanged];
-    AppManager *manager = [AppManager sharedManager];
-    [manager updateRecommendWithTarget:self selector:@selector(onUpdate)];
-    self.programArray = [manager recommend];
-    self.refreshControl = refreshControl;
-}
-
-- (void)onUpdate
-{
-    AppManager *manager = [AppManager sharedManager];
-    self.programArray = [manager recommend];
-    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -63,15 +44,11 @@
 //行に表示するデータの件数
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.programArray count];
+    return 10;
 }
 
 //行が選択された時の挙動
 -(void)tableView:(UITableView *)tv didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  // ハイライトを外す
-  [tv deselectRowAtIndexPath:indexPath animated:YES];
-  [self performSegueWithIdentifier:@"gotoRememberViewController" sender:self];
-    
   //ハイライト解除
   [tv deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -79,16 +56,12 @@
 //行に表示するデータの編集
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    for (int i = 0; i < [self.programArray count]; i++) {
-        NSLog(@"%@", self.programArray[i]);
-    }
-    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
     }
     
-    [self updateCell:cell atIndexPath:indexPath];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@ %i", @"row", indexPath.row];
     return cell;
 }
 
@@ -110,31 +83,5 @@
     }   
 }
 
-- (void) updateCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-    // Update Cells
-    Program *p = self.programArray[indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@", [p programTitle]];
-}
-
-- (void) updateVisibleCells {
-    for (UITableViewCell *cell in [self.tableView visibleCells]){
-        [self updateCell:cell atIndexPath:[self.tableView indexPathForCell:cell]];
-    }
-}
-
-
-- (void)onRefresh:(id)sender {
-    [self.refreshControl beginRefreshing];
-    //この間にデータを表示する処理
-    [self updateVisibleCells];
-    [self.refreshControl endRefreshing];
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ( [[segue identifier] isEqualToString:@"gotoCellDetail"] ) {
-        ViewController *viewController = [segue destinationViewController];
-    }
-}
 
 @end
