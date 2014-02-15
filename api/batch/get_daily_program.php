@@ -16,8 +16,8 @@ $url = createUrl($date);
 $program_list = getProgramList($url);
 
 // NHKオンラインのURL追加
-foreach ($program_list as $program) {
-    $program['nhk_online_url'] = NHK_ONLINE_URL.'?'
+for ($i=0, $len=count($program_list); $i<$len; $i++) {
+    $program_list[$i]['nhk_online_url'] = NHK_ONLINE_URL.'?'
         .http_build_query(array(
                                 'a' => '001',
                                 'd' => $date,
@@ -26,7 +26,7 @@ foreach ($program_list as $program) {
                                 ));
 }
 
-// ファイルに書き出し
+/ ファイルに書き出し
 $filename = DATA_DIR.'/pg/'.$date.'.tv.json';
 file_put_contents($filename, json_encode($program_list));
 
