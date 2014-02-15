@@ -14,6 +14,4 @@
 @interface ViewController : UIViewController <CLLocationManagerDelegate, ABPeoplePickerNavigationControllerDelegate>
 @property (strong, nonatomic) IBOutlet CustomTableView *tableView;
 @property (weak, nonatomic) IBOutlet UIImageView *headerView;
-
-
 @end

@@ -44,14 +44,9 @@ function getProgramList ($url) {
     $data = json_decode(file_get_contents($url), true);
     $ret = array_merge(
         $data['list']['e1'],
-        $data['list']['e3'],
-        $data['list']['e4'],
         $data['list']['g1'],
-        $data['list']['g2'],
         $data['list']['s1'],
-        $data['list']['s2'],
-        $data['list']['s3'],
-        $data['list']['s4']
+        $data['list']['s3']
     );
 
     usort($ret, function ($a, $b) {

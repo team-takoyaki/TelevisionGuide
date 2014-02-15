@@ -35,26 +35,26 @@
 //        [_imageView setImage:image];
 
         self.programImageView = [[UIImageView alloc] initWithFrame:CGRectMake(11, 10, 41, 41)];
-        [_programImageView setBackgroundColor:[UIColor clearColor]];
+        [_programImageView setBackgroundColor:[UIColor whiteColor]];
         [self.contentView addSubview:_programImageView];
         
         self.serviceNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(4, 48, 55, 23)];
 //        [self.serviceNameLabel setBackgroundColor:[UIColor blueColor]];
-        [_serviceNameLabel setBackgroundColor:[UIColor clearColor]];
+        [_serviceNameLabel setBackgroundColor:[UIColor whiteColor]];
         [_serviceNameLabel setFont:[UIFont fontWithName:@"HiraKakuProN-W3" size:8]];
         [_serviceNameLabel setTextAlignment:NSTextAlignmentCenter];
         [_serviceNameLabel setTextColor:[UIColor grayColor]];
         [self.contentView addSubview:_serviceNameLabel];
         
         self.programDateLabel = [[UILabel alloc] initWithFrame:CGRectMake(4, 60, 55, 23)];
-        [_programDateLabel setBackgroundColor:[UIColor clearColor]];
+        [_programDateLabel setBackgroundColor:[UIColor whiteColor]];
         [_programDateLabel setFont:[UIFont fontWithName:@"HiraKakuProN-W3" size:8]];
         [_programDateLabel setTextAlignment:NSTextAlignmentCenter];
         [_programDateLabel setTextColor:[UIColor grayColor]];
         [self.contentView addSubview:_programDateLabel];
         
         self.programTimeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 72, 70, 23)];
-        [_programTimeLabel setBackgroundColor:[UIColor clearColor]];
+        [_programTimeLabel setBackgroundColor:[UIColor whiteColor]];
         [_programTimeLabel setFont:[UIFont fontWithName:@"HiraKakuProN-W3" size:8]];
         [_programTimeLabel setTextAlignment:NSTextAlignmentCenter];
         [_programTimeLabel setTextColor:[UIColor grayColor]];
@@ -63,7 +63,7 @@
         self.programTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(55, -5, 240, 58)];
         [_programTitleLabel setFont:[UIFont fontWithName:@"HiraKakuProN-W6" size:14]];
         [_programTitleLabel setTextAlignment:NSTextAlignmentLeft];
-        [_programTitleLabel setBackgroundColor:[UIColor clearColor]];
+        [_programTitleLabel setBackgroundColor:[UIColor whiteColor]];
         _programTitleLabel.numberOfLines = 2;
         [self.contentView addSubview:_programTitleLabel];
         
