@@ -72,8 +72,12 @@ static AppManager* sharedInstance = nil;
 
 - (void)updateRecommendWithTarget:(id)aTarget selector:(SEL)aSelector
 {
+    NSString *urlString = [NSString stringWithFormat:@"%@?user_id=%@", RECOMMEND_URL, _UUID];
+
+    NSLog(@"REQUEST URL: %@", urlString);
+
     AFHTTPRequestOperationManager* manager = [AFHTTPRequestOperationManager manager];
-    [manager POST:RECOMMEND_URL parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager GET:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         // NSLog(@"response: %@", responseObject);
         _recommend = [[NSMutableArray alloc] init];
         NSArray *programs = (NSArray *)responseObject;
