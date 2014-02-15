@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="oQL-Yc-kWG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="sVf-vg-Ubl">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -22,7 +22,7 @@
             </objects>
             <point key="canvasLocation" x="325" y="39"/>
         </scene>
-        <!--Recommend View Controller-->
+        <!--Recommend View Controller - テレビ番組-->
         <scene sceneID="MvO-ea-465">
             <objects>
                 <tableViewController id="oQL-Yc-kWG" customClass="RecommendViewController" sceneMemberID="viewController">
@@ -32,7 +32,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="DBk-Ql-Opo">
-                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DBk-Ql-Opo" id="irM-3U-vC6">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -45,10 +45,11 @@
                             <outlet property="delegate" destination="oQL-Yc-kWG" id="tPV-uy-HKc"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="テレビ番組" id="0vH-Ib-S9Y"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cDo-pZ-0tp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="844" y="106"/>
+            <point key="canvasLocation" x="1370" y="106"/>
         </scene>
         <!--Recommend View Controller-->
         <scene sceneID="yxA-RX-xga">
@@ -75,6 +76,28 @@
                     </tableView>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4pL-cG-0g9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1370" y="106"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="lY9-U5-cfv">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sVf-vg-Ubl" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bdk-kN-4cd">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="mcv-MN-anN">
+                        <rect key="frame" x="0.0" y="416" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="oQL-Yc-kWG" kind="relationship" relationship="rootViewController" id="i8X-Qf-cdQ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZrB-CF-kzE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="844" y="106"/>
         </scene>
