@@ -12,20 +12,35 @@
 
 @interface ViewController ()
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (nonatomic) BOOL isSwipe;
+@property (nonatomic, strong) UIImageView *nextHeaderView;
+@property (nonatomic) CGPoint touchBeganPoint;
+@property (nonatomic) CGRect originalNextFrame;
+@property (nonatomic) CGRect originalFrame;
 @end
 
 @implementation ViewController
+
+@synthesize isSwipe = _isSwipe;
+@synthesize nextHeaderView = _nextHeaderView;
+@synthesize headerView = _headerView;
+@synthesize touchBeganPoint = _touchBeganPoint;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
-    UISwipeGestureRecognizer *swipeLeftGesture =
-    [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipeLeft:)];
-    swipeLeftGesture.direction = UISwipeGestureRecognizerDirectionLeft;
+//    UISwipeGestureRecognizer *swipeLeftGesture =
+//    [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipeLeft:)];
+//    swipeLeftGesture.direction = UISwipeGestureRecognizerDirectionLeft;
+    
+    _nextHeaderView = [[UIImageView alloc] initWithFrame:CGRectMake(_headerView.frame.size.width, _headerView.frame.origin.y, 320, 55)];
+    [_nextHeaderView setImage:[UIImage imageNamed:@"remember_title_2.png"]];
+    [self.view addSubview:_nextHeaderView];
     
     self.headerView.userInteractionEnabled = YES;
-    [self.headerView addGestureRecognizer:swipeLeftGesture];
+  
+//    [self.headerView addGestureRecognizer:swipeLeftGesture];
     
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(onRefresh:) forControlEvents:UIControlEventValueChanged];
@@ -88,5 +103,66 @@
     
     [self performSegueWithIdentifier:@"gotoRememberView" sender:self];
 }
+
+- (void)gotoRememberView
+{
+    [self performSegueWithIdentifier:@"gotoRememberView" sender:self];
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    if (touches.count > 1) {
+        return;
+    }
+    
+    _isSwipe = NO;
+    
+	// マルチタッチ
+    for (UITouch *touch in touches) {
+		CGPoint location = [touch locationInView:self.view];
+		NSLog(@"x座標:%f y座標:%f",location.x,location.y);
+        
+        if (location.x > 290) {
+            _originalFrame = _headerView.frame;
+            _originalNextFrame = _nextHeaderView.frame;
+            _isSwipe = YES;
+            _touchBeganPoint.x = location.x;
+        }
+	}
+}
+
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+	// マルチタッチ
+    for (UITouch *touch in touches) {
+		CGPoint location = [touch locationInView:self.view];
+//		NSLog(@"x座標:%f y座標:%f",location.x,location.y);
+        if (_isSwipe) {
+            float moveX = _touchBeganPoint.x - location.x;
+            NSLog(@"moveX:%f", moveX);
+            _headerView.frame = CGRectMake(_originalFrame.origin.x - moveX, _originalFrame.origin.y, _originalFrame.size.width, _originalFrame.size.height);
+            
+            _nextHeaderView.frame = CGRectMake(_originalNextFrame.origin.x - moveX, _originalNextFrame.origin.y, _originalNextFrame.size.width, _originalNextFrame.size.height);
+        }
+	}
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+	// マルチタッチ
+    for (UITouch *touch in touches) {
+		CGPoint location = [touch locationInView:self.view];
+		NSLog(@"x座標:%f y座標:%f",location.x,location.y);
+        
+        if (_isSwipe && location.x < 140) {
+            _headerView.frame = CGRectMake(320, _originalFrame.origin.y, _originalFrame.size.width, _originalFrame.size.height);
+            _nextHeaderView.frame = CGRectMake(00, _originalNextFrame.origin.y, _originalNextFrame.size.width, _originalNextFrame.size.height);
+            
+            [self gotoRememberView];
+        } else if (_isSwipe) {
+            NSLog(@"swipe cancel");
+            _headerView.frame = _originalFrame;
+            _nextHeaderView.frame = _originalNextFrame;
+        }
+	}
+}
+
 
 @end

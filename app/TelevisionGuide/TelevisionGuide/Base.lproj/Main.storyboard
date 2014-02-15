@@ -38,7 +38,7 @@
                     <connections>
                         <outlet property="headerView" destination="MM4-s9-2Rz" id="6VC-eD-ElL"/>
                         <outlet property="tableView" destination="NgU-FF-fBg" id="9Hj-9H-cM1"/>
-                        <segue destination="1Vk-l8-Nsf" kind="modal" identifier="gotoRememberView" animates="NO" id="1bP-ZH-vFx"/>
+                        <segue destination="1Vk-l8-Nsf" kind="modal" identifier="gotoRememberView" modalTransitionStyle="crossDissolve" id="1bP-ZH-vFx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -78,7 +78,7 @@
                     <connections>
                         <outlet property="headerView" destination="TOh-NL-aUM" id="Zjy-ND-V5K"/>
                         <outlet property="tableView" destination="4hb-5p-BP0" id="rEL-G5-hTT"/>
-                        <segue destination="vXZ-lx-hvc" kind="modal" identifier="gotoMainView" animates="NO" id="eh4-mb-ipG"/>
+                        <segue destination="vXZ-lx-hvc" kind="modal" identifier="gotoMainView" modalTransitionStyle="crossDissolve" id="eh4-mb-ipG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Om7-Sq-sn0" sceneMemberID="firstResponder"/>
