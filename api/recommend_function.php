@@ -38,11 +38,15 @@ function saveUserInfo ($user_id, $type, $data) {
         $saved_data = loadUserInfo($user_id);
 
         // remmember title について
-        if (isset($data['title'])) {
-            if (isset($saved_data['title'])) {
-                $save_data['title'] = array_unique(array_merge($data['title'],$saved_data['title']));
-            }
+        if (isset($saved_data['title'])) {
+            $save_data['title'] = array_unique(array_merge($data['title'],$saved_data['title']));
         }
+
+        if (isset($saved_data['pg_id'])) {
+            $save_data['pg_id'] = array_unique(array_merge($data['pg_id'],$saved_data['pg_id']));
+        }        
+        
+
         // ...
     }
 

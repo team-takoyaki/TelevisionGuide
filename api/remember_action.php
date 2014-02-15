@@ -48,6 +48,7 @@ if (!$target_pg) {
 }
 
 // 2.2 お気に入り番組名抽出
+$remember_pg_id =  $pg_id;
 $remember_title =  explode(' ', $pg['title']);
 // 2.3 お気に入りキーワード抽出
 
@@ -55,7 +56,7 @@ $remember_title =  explode(' ', $pg['title']);
 /*
  * 3. 情報書き込み
  */
-$ret = saveUserInfo($user_id, 'rememebr', array('title' => $remember_title));
+$ret = saveUserInfo($user_id, 'rememebr', array('pg_id' => array($pg_id=>1), 'title' => $remember_title));
 
 if (!$ret) {
     echo 'write error';
