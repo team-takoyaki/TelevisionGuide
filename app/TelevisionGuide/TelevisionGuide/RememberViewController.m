@@ -1,32 +1,72 @@
 //
-//  RememberViewController.m
+//  ViewController.m
 //  TelevisionGuide
 //
-//  Created by Kashima Takumi on 2014/02/15.
+//  Created by Kashima Takumi on 2014/02/11.
 //  Copyright (c) 2014年 TEAM TAKOYAKI. All rights reserved.
 //
 
 #import "RememberViewController.h"
+#import "AppManager.h"
+#import "CustomTableViewCell.h"
 
 @interface RememberViewController ()
-
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 @end
 
 @implementation RememberViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    
+    UISwipeGestureRecognizer *swipeRightGesture =
+    [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipeRight:)];
+    swipeRightGesture.direction = UISwipeGestureRecognizerDirectionRight;
+    
+    self.headerView.userInteractionEnabled = YES;
+    [self.headerView addGestureRecognizer:swipeRightGesture];
+    
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(onRefresh:) forControlEvents:UIControlEventValueChanged];
+    _refreshControl = refreshControl;
+    [_tableView addSubview:refreshControl];
+    
+    [_tableView registerClass:[CustomTableViewCell class] forCellReuseIdentifier:@"CustomCell"];
+   
+    [_tableView setDelegate:_tableView];
+    [_tableView setDataSource:_tableView];
+    
+    AppManager *manager = [AppManager sharedManager];
+    [manager updateRememberWithTarget:self selector:@selector(onUpdateTableViewCell)];
+   
+	// Do any additional setup after loading the view, typically from a nib.
+}
+
+- (void)onUpdateTableViewCell
+{
+    AppManager *manager = [AppManager sharedManager];
+    self.tableView.programs = (NSMutableArray *)[manager remember];
+    
+    [self.tableView reloadData];
+    
+    if (self.refreshControl.refreshing == YES) {
+         [self.refreshControl endRefreshing];
+    }
+}
+
+- (void)updateCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+{
+    // Update Cells
+    Program *p = self.tableView.programs[indexPath.row];
+    
+    cell.textLabel.text = [NSString stringWithFormat:@"%@", [p programTitle]];
+}
+
+- (void)updateVisibleCells
+{
+    AppManager *manager = [AppManager sharedManager];
+    [manager updateRecommendWithTarget:self selector:@selector(onUpdateTableViewCell)];
 }
 
 - (void)didReceiveMemoryWarning
@@ -35,53 +75,18 @@
     // Dispose of any resources that can be recreated.
 }
 
-//テーブルに含まれるセクションの数
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+- (void)onRefresh:(id)sender
 {
-    return 1;	// 0 -> 1 に変更
-}
-
-//行に表示するデータの件数
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return 10;
-}
-
-//行が選択された時の挙動
--(void)tableView:(UITableView *)tv didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  //ハイライト解除
-  [tv deselectRowAtIndexPath:indexPath animated:YES];
-}
-
-//行に表示するデータの編集
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
-    }
+    [_refreshControl beginRefreshing];
     
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ %i", @"row", indexPath.row];
-    return cell;
+    [self updateVisibleCells];
 }
 
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)swipeRight:(UISwipeGestureRecognizer *)sender
 {
-    //YESを返すと編集可能状態
-    return YES;
+    NSLog(@"右スワイプがされました．");
+    
+        [self performSegueWithIdentifier:@"gotoMainView" sender:self];
 }
-
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // 削除する
-//        NSInteger row = [indexPath row];
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-
 
 @end

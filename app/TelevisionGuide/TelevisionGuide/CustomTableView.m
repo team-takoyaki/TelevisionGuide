@@ -8,6 +8,7 @@
 
 #import "CustomTableView.h"
 #import "CustomTableViewCell.h"
+#import "AppManager.h"
 
 @interface CustomTableView()
 @end
@@ -18,7 +19,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-	// Do any additional setup after loading the view.
+        _programs = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -32,12 +33,15 @@
 //行に表示するデータの件数
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    return _programs.count;
 }
 
 //行が選択された時の挙動
 -(void)tableView:(UITableView *)tv didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+  Program *p = self.programs[indexPath.row];
+  [[UIApplication sharedApplication] openURL:[NSURL URLWithString:p.programUrl]];
+    
   //ハイライト解除
   [tv deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -47,12 +51,18 @@
 {
     CustomTableViewCell *cell = (CustomTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"CustomCell"];
 
-    [cell setProgramImage:[UIImage imageNamed:@"suntv.png"]];
-    [cell setServiceName:@"NHK総合"];
-    [cell setProgramDate:@"あす"];
-    [cell setProgramTime:@"午後7:15〜"];
-    [cell setProgramTitle:@"ダーウィンが来た！「珍鳥キーウィ飛ばない秘密」"];
-    [cell setProgramSubTitle:@"ニュージランドだけにくらす絶滅危惧種の鳥・キーウィ。大きさはニワトリほどだが、卵の重さはなんとニワトリの6倍！地中のミミズを捕まえる秘策など、珍鳥の秘密に迫る！"];
+//    [cell setProgramImage:[UIImage imageNamed:@"suntv.png"]];
+//    [cell setServiceName:@"NHK総合"];
+//    [cell setProgramDate:@"あす"];
+//    [cell setProgramTime:@"午後7:15〜"];
+//    [cell setProgramTitle:@"ダーウィンが来た！「珍鳥キーウィ飛ばない秘密」"];
+//    [cell setProgramSubTitle:@"ニュージランドだけにくらす絶滅危惧種の鳥・キーウィ。大きさはニワトリほどだが、卵の重さはなんとニワトリの6倍！地中のミミズを捕まえる秘策など、珍鳥の秘密に迫る！"];
+    Program *p = _programs[indexPath.row];
+    [cell setProgramTitle:[NSString stringWithFormat:@"%@", [p programTitle]]];
+    [cell setProgramSubTitle:[NSString stringWithFormat:@"%@", [p programSubTitle]]];
+    [cell setServiceName:[NSString stringWithFormat:@"%@", [p serviceName]]];
+    [cell setProgramDate:[NSString stringWithFormat:@"%@", [p startTime]]];
+    [cell setProgramTime:[NSString stringWithFormat:@"%@", [p startTime]]];
     
     return cell;
 }
@@ -74,6 +84,7 @@
 //        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
 //    }   
 //}
+
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {

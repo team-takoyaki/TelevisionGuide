@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface CustomTableView : UITableView <UITableViewDataSource, UITableViewDelegate>
-
+@property (nonatomic, strong) NSMutableArray *programs;
 @end

@@ -17,6 +17,11 @@
 @property (nonatomic, strong) NSMutableArray *rows;
 @property (nonatomic, strong) JTTableViewGestureRecognizer *tableViewRecognizer;
 @property (nonatomic, strong) id grabbedObject;
+@property (nonatomic) BOOL isSwipe;
+@property (nonatomic, strong) UIImageView *nextHeaderView;
+@property (nonatomic) CGPoint touchBeganPoint;
+@property (nonatomic) CGRect originalNextFrame;
+@property (nonatomic) CGRect originalFrame;
 @end
 
 @implementation ViewController
@@ -83,6 +88,11 @@
     return self;
 }
 
+@synthesize isSwipe = _isSwipe;
+@synthesize nextHeaderView = _nextHeaderView;
+@synthesize headerView = _headerView;
+@synthesize touchBeganPoint = _touchBeganPoint;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -99,6 +109,17 @@
     // Setup your tableView.delegate and tableView.datasource,
     // then enable gesture recognition in one line.
     self.tableViewRecognizer = [self.tableView enableGestureTableViewWithDelegate:self];
+//    UISwipeGestureRecognizer *swipeLeftGesture =
+//    [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipeLeft:)];
+//    swipeLeftGesture.direction = UISwipeGestureRecognizerDirectionLeft;
+    
+    _nextHeaderView = [[UIImageView alloc] initWithFrame:CGRectMake(_headerView.frame.size.width, _headerView.frame.origin.y, 320, 55)];
+    [_nextHeaderView setImage:[UIImage imageNamed:@"remember_title_2.png"]];
+    [self.view addSubview:_nextHeaderView];
+    
+    self.headerView.userInteractionEnabled = YES;
+  
+//    [self.headerView addGestureRecognizer:swipeLeftGesture];
     
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(onRefresh:) forControlEvents:UIControlEventValueChanged];
@@ -360,6 +381,122 @@
 - (void)gestureRecognizer:(JTTableViewGestureRecognizer *)gestureRecognizer needsReplacePlaceholderForRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.rows replaceObjectAtIndex:indexPath.row withObject:self.grabbedObject];
     self.grabbedObject = nil;
+    [_tableView registerClass:[CustomTableViewCell class] forCellReuseIdentifier:@"CustomCell"];
+   
+    [_tableView setDelegate:_tableView];
+    [_tableView setDataSource:_tableView];
+    
+    AppManager *manager = [AppManager sharedManager];
+    [manager updateRecommendWithTarget:self selector:@selector(onUpdateTableViewCell)];
+   
+	// Do any additional setup after loading the view, typically from a nib.
 }
+
+- (void)onUpdateTableViewCell
+{
+    AppManager *manager = [AppManager sharedManager];
+    self.tableView.programs = (NSMutableArray *)[manager recommend];
+    
+    [self.tableView reloadData];
+    
+    if (self.refreshControl.refreshing == YES) {
+         [self.refreshControl endRefreshing];
+    }
+}
+
+- (void)updateCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+{
+    // Update Cells
+    Program *p = self.tableView.programs[indexPath.row];
+    
+    cell.textLabel.text = [NSString stringWithFormat:@"%@", [p programTitle]];
+}
+
+- (void)updateVisibleCells
+{
+    AppManager *manager = [AppManager sharedManager];
+    [manager updateRecommendWithTarget:self selector:@selector(onUpdateTableViewCell)];
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (void)onRefresh:(id)sender
+{
+    [_refreshControl beginRefreshing];
+    
+    [self updateVisibleCells];
+}
+
+- (void)swipeLeft:(UISwipeGestureRecognizer *)sender
+{
+    NSLog(@"左スワイプがされました．");
+    
+    [self performSegueWithIdentifier:@"gotoRememberView" sender:self];
+}
+
+- (void)gotoRememberView
+{
+    [self performSegueWithIdentifier:@"gotoRememberView" sender:self];
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    if (touches.count > 1) {
+        return;
+    }
+    
+    _isSwipe = NO;
+    
+	// マルチタッチ
+    for (UITouch *touch in touches) {
+		CGPoint location = [touch locationInView:self.view];
+		NSLog(@"x座標:%f y座標:%f",location.x,location.y);
+        
+        if (location.x > 290) {
+            _originalFrame = _headerView.frame;
+            _originalNextFrame = _nextHeaderView.frame;
+            _isSwipe = YES;
+            _touchBeganPoint.x = location.x;
+        }
+	}
+}
+
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+	// マルチタッチ
+    for (UITouch *touch in touches) {
+		CGPoint location = [touch locationInView:self.view];
+//		NSLog(@"x座標:%f y座標:%f",location.x,location.y);
+        if (_isSwipe) {
+            float moveX = _touchBeganPoint.x - location.x;
+            NSLog(@"moveX:%f", moveX);
+            _headerView.frame = CGRectMake(_originalFrame.origin.x - moveX, _originalFrame.origin.y, _originalFrame.size.width, _originalFrame.size.height);
+            
+            _nextHeaderView.frame = CGRectMake(_originalNextFrame.origin.x - moveX, _originalNextFrame.origin.y, _originalNextFrame.size.width, _originalNextFrame.size.height);
+        }
+	}
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+	// マルチタッチ
+    for (UITouch *touch in touches) {
+		CGPoint location = [touch locationInView:self.view];
+		NSLog(@"x座標:%f y座標:%f",location.x,location.y);
+        
+        if (_isSwipe && location.x < 140) {
+            _headerView.frame = CGRectMake(320, _originalFrame.origin.y, _originalFrame.size.width, _originalFrame.size.height);
+            _nextHeaderView.frame = CGRectMake(00, _originalNextFrame.origin.y, _originalNextFrame.size.width, _originalNextFrame.size.height);
+            
+            [self gotoRememberView];
+        } else if (_isSwipe) {
+            NSLog(@"swipe cancel");
+            _headerView.frame = _originalFrame;
+            _nextHeaderView.frame = _originalNextFrame;
+        }
+	}
+}
+
 
 @end
