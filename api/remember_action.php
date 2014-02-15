@@ -59,7 +59,7 @@ $ret = saveUserInfo($user_id, 'rememebr', array('title' => $remember_title))
 
 if (!$ret) {
     echo 'write error';
-    epgxit;
+    exit;
 }
 
 header("Content-Type: application/json; charset=utf-8");
