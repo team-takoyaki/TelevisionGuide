@@ -37,10 +37,13 @@ function saveUserInfo ($user_id, $data) {
     if (file_exists($file)) {
         $saved_data = loadUserInfo($user_id);
 
-        // title について
-        if (isset($data['title'])) {
-            if (isset($saved_data['title'])) {
-                $data['title'] = array_unique(array_merge($data['title'], $saved_data['title']));
+        // remmember title について
+        if (isset($data['remember']) || isset($data['remember']['title'])) {
+            if (isset($saved_data['remember']) && isset($saved_data['remember']['title'])) {
+                $data['remember']['title'] = array_unique(
+                    array_merge($data['remember']['title'],
+                                $saved_data['remember']['title']
+                                ));
             }
         }
 
