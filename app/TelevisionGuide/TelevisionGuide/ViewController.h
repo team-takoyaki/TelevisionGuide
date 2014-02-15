@@ -11,5 +11,6 @@
 
 @interface ViewController : UIViewController
 @property (strong, nonatomic) IBOutlet CustomTableView *tableView;
+@property (weak, nonatomic) IBOutlet UIImageView *headerView;
 
 @end

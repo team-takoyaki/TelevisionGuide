@@ -19,6 +19,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    UISwipeGestureRecognizer *swipeLeftGesture =
+    [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(view_SwipeLeft:)];
+    
+    swipeLeftGesture.direction = UISwipeGestureRecognizerDirectionLeft;
+    self.headerView.userInteractionEnabled = YES;
+    [self.headerView addGestureRecognizer:swipeLeftGesture];
     
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(onRefresh:) forControlEvents:UIControlEventValueChanged];
@@ -73,6 +80,11 @@
     [_refreshControl beginRefreshing];
     
     [self updateVisibleCells];
+}
+
+- (void)view_SwipeLeft:(UISwipeGestureRecognizer *)sender
+{
+    NSLog(@"左スワイプがされました．");
 }
 
 @end

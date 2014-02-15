@@ -35,6 +35,11 @@
     UIImage *mainTitleImage = [UIImage imageNamed:@"main_title.png"];
 
     UIImageView *imageView = [[UIImageView alloc] initWithImage:mainTitleImage];
+    UISwipeGestureRecognizer *swipeLeftGesture =
+    [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(view_SwipeLeft:)];
+    
+    swipeLeftGesture.direction = UISwipeGestureRecognizerDirectionLeft;
+    [imageView addGestureRecognizer:swipeLeftGesture];
     [self.navigationController.navigationBar addSubview:imageView];
     
 	// Do any additional setup after loading the view.
@@ -144,6 +149,11 @@
 {
     if ( [[segue identifier] isEqualToString:@"gotoCellDetail"] ) {
     }
+}
+
+- (void)view_SwipeLeft:(UISwipeGestureRecognizer *)sender
+{
+    NSLog(@"左スワイプがされました．");
 }
 
 @end
