@@ -47,7 +47,7 @@ $remember_title =  explode(' ', $pg['title']);
 /*
  * 3. 情報書き込み
  */
-$ret = saveUserInfo(array('title' => $remember_title));
+$ret = saveUserInfo(array($user_id, 'title' => $remember_title));
 
 
 if (!$ret) {

@@ -40,14 +40,14 @@ function saveUserInfo ($user_id, $data) {
         // title について
         if (isset($data['title'])) {
             if (isset($saved_data['title'])) {
-                $data['title'] = array_merge($data['title'], $saved_data['title']);
+                $data['title'] = array_unique(array_merge($data['title'], $saved_data['title']));
             }
         }
 
         // ...
     }
 
-    return file_put_contents($file, seriarize($data));
+    return file_put_contents($file, serialize($data));
 }
 
 function getUserFileName ($user_id) {
