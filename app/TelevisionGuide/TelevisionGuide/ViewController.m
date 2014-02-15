@@ -23,10 +23,19 @@
     NSString *uuid = [manager UUID];
     NSLog(@"UUID:%@", uuid);
     
-    [manager updateRecommend];
+    [manager updateRecommendWithTarget:self selector:@selector(onUpdate)];
     
    
 	// Do any additional setup after loading the view, typically from a nib.
+}
+
+- (void)onUpdate
+{
+    AppManager *manager = [AppManager sharedManager];
+    NSArray *recommend = [manager recommend];
+    for (Program *p in recommend) {
+        NSLog(@"%@", [p programTitle]);
+    }
 }
 
 - (void)didReceiveMemoryWarning
