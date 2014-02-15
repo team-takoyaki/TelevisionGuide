@@ -6,15 +6,15 @@
 //  Copyright (c) 2014年 TEAM TAKOYAKI. All rights reserved.
 //
 
-#import "RecomendViewController.h"
+#import "RecommendViewController.h"
 
-@interface RecomendViewController ()
+@interface RecommendViewController ()
 
 @property NSArray *programArray;
 
 @end
 
-@implementation RecomendViewController
+@implementation RecommendViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

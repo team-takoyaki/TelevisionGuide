@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RecomendViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
+@interface RecommendViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
 
 @end
+
