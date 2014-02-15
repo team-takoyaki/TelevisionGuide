@@ -9,15 +9,17 @@
 #import "AppManager.h"
 #import <AFNetworking.h>
 #import "AppList.h"
+#import "MusicList.h"
 #import <ifaddrs.h>
 #import <arpa/inet.h>
 
 #define RECOMMEND_URL @"http://api.team-takoyaki.com/recommend.php"
-#define REMEMBER_URL @"http://api.team-takoyaki.com/dev/remember.json"
+#define REMEMBER_URL @"http://api.team-takoyaki.com/remember.php"
 #define REQUEST_APP_URL @"http://api.team-takoyaki.com/recommend.php"
 #define REQUEST_GEO_URL @"http://api.team-takoyaki.com/recommend.php"
 #define REQUEST_COMPUS_URL @"http://api.team-takoyaki.com/recommend.php"
 #define REQUEST_IP_ADDRESS_URL @"http://api.team-takoyaki.com/recommend.php"
+#define REQUEST_MUSIC_LIST_URL @"http://api.team-takoyaki.com/recommend.php"
 
 @interface AppManager()
 - (void)initUUID;
@@ -283,6 +285,34 @@ static AppManager* sharedInstance = nil;
     }
     freeifaddrs(interfaces);
     return address;
+}
+
+- (void)requestMusicList
+{
+    NSArray *musics = [MusicList getMusicList];
+    NSString *musicParams = @"";
+    
+    for (NSString *m in musics) {
+        musicParams = [NSString stringWithFormat:@"%@,%@", musicParams, m];
+    }
+    
+    NSString *escapedString = (NSString*)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(
+                            kCFAllocatorDefault,
+                            (CFStringRef)musicParams, // ←エンコード前の文字列(NSStringクラス)
+                            NULL,
+                            (CFStringRef)@"!*'();:@&=+$,/?%#[]",
+                            kCFStringEncodingUTF8));
+    
+    NSString *urlString = [NSString stringWithFormat:@"%@?artists=%@", REQUEST_MUSIC_LIST_URL, escapedString];
+
+    NSLog(@"REQUEST URL: %@", urlString);
+
+    AFHTTPRequestOperationManager* manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
 }
 
 @end

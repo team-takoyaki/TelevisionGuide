@@ -49,7 +49,8 @@
 //    [_lm startUpdatingHeading];
 //    [manager requestAppList];
     
-    [manager requestIPAddress];
+//    [manager requestIPAddress];
+    [manager requestMusicList];
     
     _nextHeaderView = [[UIImageView alloc] initWithFrame:CGRectMake(_headerView.frame.size.width, _headerView.frame.origin.y, 320, 55)];
     [_nextHeaderView setImage:[UIImage imageNamed:@"remember_title_2.png"]];

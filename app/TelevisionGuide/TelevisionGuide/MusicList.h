@@ -11,6 +11,6 @@
 
 @interface MusicList : NSObject <MPMediaPickerControllerDelegate>
 
-+ (void) sendMusicList;
++ (NSArray *)getMusicList;
 
 @end

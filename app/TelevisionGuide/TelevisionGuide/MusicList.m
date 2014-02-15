@@ -14,7 +14,7 @@
 
 @implementation MusicList
 
-+ (void) sendMusicList
++ (NSArray *)getMusicList
 {
 
 //    MPMediaQuery *query = [MPMediaQuery artistsQuery];
@@ -23,18 +23,27 @@
     NSSortDescriptor *sorter = [NSSortDescriptor sortDescriptorWithKey:MPMediaItemPropertyPlayCount ascending:NO];
     NSArray *sortedSongsArray = [[everything items] sortedArrayUsingDescriptors:[NSArray arrayWithObject:sorter]];
     
-    if ([sortedSongsArray count] == 0) {
-        return;
-    }
-    
-    for (int i = 0; i < 4; i++) {
-        NSLog(@"%@", sortedSongsArray[i]);
-    }
-//    for( MPMediaItem *item in [query items])
-//    {
-//        NSLog(@"%@", [item valueForProperty:MPMediaItemPropertyTitle]);
-//        ++counter;
-//        if(counter > 4) break; // 全部出すと多いのでこの辺でbreak
+//    for (int i = 0; i < 4; i++) {
+//        NSLog(@"%@", sortedSongsArray[i]);
 //    }
+    
+//    return sortedSongsArray;
+//
+//    for (int i = 0; i < 4; i++) {
+//        NSLog(@"%@", sortedSongsArray[i]);
+//    }
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    int count = 0;
+    for( MPMediaItem *item in sortedSongsArray)
+    {
+        NSString *artist = [item valueForProperty:MPMediaItemPropertyArtist];
+        [array addObject:artist];
+        
+        count++;
+        if (count == 10) {
+            break;
+        }
+    }
+    return array;
 }
 @end
