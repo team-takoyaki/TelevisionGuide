@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "AppManager.h"
 
 @interface ViewController ()
 
@@ -17,6 +18,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    AppManager *manager = [AppManager sharedManager];
+    NSString *uuid = [manager getUUID];
+    NSLog(@"UUID:%@", uuid);
+    
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
