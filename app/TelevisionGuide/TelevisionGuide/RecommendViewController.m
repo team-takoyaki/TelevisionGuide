@@ -45,6 +45,11 @@
 {
     AppManager *manager = [AppManager sharedManager];
     self.programArray = [manager recommend];
+    
+    if (self.refreshControl.refreshing == YES) {
+         [self.refreshControl endRefreshing];
+    }
+    
     [self.tableView reloadData];
 }
 
@@ -79,9 +84,6 @@
 //行に表示するデータの編集
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    for (int i = 0; i < [self.programArray count]; i++) {
-        NSLog(@"%@", self.programArray[i]);
-    }
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     if (cell == nil) {
@@ -117,6 +119,9 @@
 }
 
 - (void) updateVisibleCells {
+    AppManager *manager = [AppManager sharedManager];
+    [manager updateRecommendWithTarget:self selector:@selector(onUpdate)];
+    self.programArray = [manager recommend];
     for (UITableViewCell *cell in [self.tableView visibleCells]){
         [self updateCell:cell atIndexPath:[self.tableView indexPathForCell:cell]];
     }
@@ -127,13 +132,13 @@
     [self.refreshControl beginRefreshing];
     //この間にデータを表示する処理
     [self updateVisibleCells];
-    [self.refreshControl endRefreshing];
+//    [self.refreshControl endRefreshing];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ( [[segue identifier] isEqualToString:@"gotoCellDetail"] ) {
-        ViewController *viewController = [segue destinationViewController];
+//        ViewController *viewController = [segue destinationViewController];
     }
 }
 
