@@ -24,6 +24,8 @@
 		5977EF0018AA42E000E0974F /* TelevisionGuideTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5977EEFF18AA42E000E0974F /* TelevisionGuideTests.m */; };
 		59C8726218AF719A002B94EF /* AppManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 59C8726118AF719A002B94EF /* AppManager.m */; };
 		59C8726518AF798D002B94EF /* Program.m in Sources */ = {isa = PBXBuildFile; fileRef = 59C8726418AF798D002B94EF /* Program.m */; };
+		59C8726A18AF8B90002B94EF /* suntv.png in Resources */ = {isa = PBXBuildFile; fileRef = 59C8726918AF8B90002B94EF /* suntv.png */; };
+		59C8726D18AF9046002B94EF /* RememberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59C8726C18AF9046002B94EF /* RememberViewController.m */; };
 		B24B475CB2024074AB01C022 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C07899F003A242199D49A26F /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +65,9 @@
 		59C8726118AF719A002B94EF /* AppManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppManager.m; sourceTree = "<group>"; };
 		59C8726318AF798D002B94EF /* Program.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Program.h; sourceTree = "<group>"; };
 		59C8726418AF798D002B94EF /* Program.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Program.m; sourceTree = "<group>"; };
+		59C8726918AF8B90002B94EF /* suntv.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = suntv.png; sourceTree = "<group>"; };
+		59C8726B18AF9046002B94EF /* RememberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RememberViewController.h; sourceTree = "<group>"; };
+		59C8726C18AF9046002B94EF /* RememberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RememberViewController.m; sourceTree = "<group>"; };
 		C07899F003A242199D49A26F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF469E22BE6B491E8F5FD9D7 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -127,11 +132,14 @@
 		5977EEDA18AA42E000E0974F /* TelevisionGuide */ = {
 			isa = PBXGroup;
 			children = (
+				59C8726818AF8B90002B94EF /* Resources */,
 				5977EEE318AA42E000E0974F /* AppDelegate.h */,
 				5977EEE418AA42E000E0974F /* AppDelegate.m */,
 				5977EEE618AA42E000E0974F /* Main.storyboard */,
 				164FE2D218AF68060066427E /* RecommendViewController.h */,
 				164FE2D318AF68060066427E /* RecommendViewController.m */,
+				59C8726B18AF9046002B94EF /* RememberViewController.h */,
+				59C8726C18AF9046002B94EF /* RememberViewController.m */,
 				5977EEE918AA42E000E0974F /* ViewController.h */,
 				5977EEEA18AA42E000E0974F /* ViewController.m */,
 				59C8726018AF7199002B94EF /* AppManager.h */,
@@ -171,6 +179,14 @@
 				5977EEFC18AA42E000E0974F /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		59C8726818AF8B90002B94EF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				59C8726918AF8B90002B94EF /* suntv.png */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -251,6 +267,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59C8726A18AF8B90002B94EF /* suntv.png in Resources */,
 				5977EEED18AA42E000E0974F /* Images.xcassets in Resources */,
 				5977EEDF18AA42E000E0974F /* InfoPlist.strings in Resources */,
 				5977EEE818AA42E000E0974F /* Main.storyboard in Resources */,
@@ -307,6 +324,7 @@
 			files = (
 				5977EEEB18AA42E000E0974F /* ViewController.m in Sources */,
 				5977EEE518AA42E000E0974F /* AppDelegate.m in Sources */,
+				59C8726D18AF9046002B94EF /* RememberViewController.m in Sources */,
 				5977EEE118AA42E000E0974F /* main.m in Sources */,
 				164FE2D418AF68060066427E /* RecommendViewController.m in Sources */,
 				59C8726218AF719A002B94EF /* AppManager.m in Sources */,
