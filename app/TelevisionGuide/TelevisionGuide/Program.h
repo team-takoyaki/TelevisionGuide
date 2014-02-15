@@ -17,4 +17,5 @@
 @property (strong, nonatomic) NSString *endTime;
 @property (strong, nonatomic) NSString *serviceId;
 @property (strong, nonatomic) NSString *serviceName;
+@property (strong, nonatomic) NSString *programUrl;
 @end

@@ -29,8 +29,37 @@
    
     [_tableView setDelegate:_tableView];
     [_tableView setDataSource:_tableView];
+    
+    AppManager *manager = [AppManager sharedManager];
+    [manager updateRecommendWithTarget:self selector:@selector(onUpdateTableViewCell)];
    
 	// Do any additional setup after loading the view, typically from a nib.
+}
+
+- (void)onUpdateTableViewCell
+{
+    AppManager *manager = [AppManager sharedManager];
+    self.tableView.programs = (NSMutableArray *)[manager recommend];
+    
+    [self.tableView reloadData];
+    
+    if (self.refreshControl.refreshing == YES) {
+         [self.refreshControl endRefreshing];
+    }
+}
+
+- (void)updateCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+{
+    // Update Cells
+    Program *p = self.tableView.programs[indexPath.row];
+    
+    cell.textLabel.text = [NSString stringWithFormat:@"%@", [p programTitle]];
+}
+
+- (void)updateVisibleCells
+{
+    AppManager *manager = [AppManager sharedManager];
+    [manager updateRecommendWithTarget:self selector:@selector(onUpdateTableViewCell)];
 }
 
 - (void)didReceiveMemoryWarning
@@ -42,7 +71,8 @@
 - (void)onRefresh:(id)sender
 {
     [_refreshControl beginRefreshing];
-    [_refreshControl endRefreshing];
+    
+    [self updateVisibleCells];
 }
 
 @end

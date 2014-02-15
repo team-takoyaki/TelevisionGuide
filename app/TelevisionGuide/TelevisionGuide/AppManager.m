@@ -108,6 +108,9 @@ static AppManager* sharedInstance = nil;
             NSString *sName = (NSString *)[dict2 objectForKey:@"name"];
             [program setServiceName:sName];
             
+            NSString *pUrl = (NSString *)[dict objectForKey:@"nhk_online_url"];
+            [program setProgramUrl:pUrl];
+            
             [_recommend addObject:program];
         }
         
