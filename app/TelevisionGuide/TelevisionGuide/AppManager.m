@@ -70,11 +70,12 @@ static AppManager* sharedInstance = nil;
     return (NSArray *)_recommend;
 }
 
-- (void)updateRecommend
+- (void)updateRecommendWithTarget:(id)aTarget selector:(SEL)aSelector
 {
     AFHTTPRequestOperationManager* manager = [AFHTTPRequestOperationManager manager];
     [manager POST:RECOMMEND_URL parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         // NSLog(@"response: %@", responseObject);
+        _recommend = [[NSMutableArray alloc] init];
         NSArray *programs = (NSArray *)responseObject;
         for (NSDictionary *dict in programs) {
             Program *program = [[Program alloc] init];
@@ -106,9 +107,15 @@ static AppManager* sharedInstance = nil;
             [_recommend addObject:program];
         }
         
-        for (Program *p in _recommend) {
-            NSLog(@"ProgramName: %@", [p programTitle]);
+        #pragma clang diagnostic push
+        #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+        if (aTarget && aSelector) {
+            [aTarget performSelector:aSelector];
         }
+        #pragma clang diagnostic pop
+//        for (Program *p in _recommend) {
+//            NSLog(@"ProgramName: %@", [p programTitle]);
+//        }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);

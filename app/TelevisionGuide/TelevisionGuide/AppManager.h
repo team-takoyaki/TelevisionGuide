@@ -11,7 +11,13 @@
 
 @interface AppManager : NSObject
 + (id)sharedManager;
-- (void)updateRecommend;
+
+/*
+* ex.
+*   [manager updateRecommendWithTarget:target
+*                    selector:@selector(callback)];
+*/
+- (void)updateRecommendWithTarget:(id)aTarget selector:(SEL)aSelector;
 - (NSArray *)recommend;
 
 @property (strong, nonatomic, readonly) NSString *UUID;
