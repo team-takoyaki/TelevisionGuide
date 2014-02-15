@@ -21,12 +21,12 @@ for ($i=0, $len=count($program_list); $i<$len; $i++) {
         .http_build_query(array(
                                 'a' => '001',
                                 'd' => $date,
-                                'c' => $SERVECE_INDEX[$program['service']['id']],
-                                'e' => $program['event_id']*1,
+                                'c' => $SERVECE_INDEX[$program_list[$i]['service']['id']],
+                                'e' => $program_list[$i]['event_id']*1,                                
                                 ));
 }
 
-/ ファイルに書き出し
+// ファイルに書き出し
 $filename = DATA_DIR.'/pg/'.$date.'.tv.json';
 file_put_contents($filename, json_encode($program_list));
 
