@@ -22,8 +22,8 @@ function loadPgFromJson () {
     return $ret;
 }
 
-function loadUserInfo ($user_id) {
-    $file = getUserFileName ($user_id);
+function loadUserInfo ($user_id, $type) {
+    $file = getUserFileName ($user_id, $type);
     if (file_exists($file)) {
         return unserialize(file_get_contents($file));
     } else {
@@ -31,38 +31,24 @@ function loadUserInfo ($user_id) {
     }
 }
 
-function saveUserInfo ($user_id, $data) {
-    $file = getUserFileName ($user_id);
+function saveUserInfo ($user_id, $type, $data) {
+    $file = getUserFileName ($user_id, $type);
     
     if (file_exists($file)) {
         $saved_data = loadUserInfo($user_id);
 
         // remmember title について
-        if (isset($data['remember']) || isset($data['remember']['title'])) {
-            if (isset($saved_data['remember']) && isset($saved_data['remember']['title'])) {
-                $data['remember']['title'] = array_unique(
-                    array_merge($data['remember']['title'],
-                                $saved_data['remember']['title']
-                                ));
+        if (isset($data['title'])) {
+            if (isset($saved_data['title'])) {
+                $save_data['title'] = array_unique(array_merge($data['title'],$saved_data['title']));
             }
         }
-
-        // forget title について
-        if (isset($data['forget']) || isset($data['forget']['title'])) {
-            if (isset($saved_data['forget']) && isset($saved_data['forget']['title'])) {
-                $data['forget']['title'] = array_unique(
-                    array_merge($data['forget']['title'],
-                                $saved_data['forget']['title']
-                                ));
-            }
-        }        
-
         // ...
     }
 
     return file_put_contents($file, serialize($data));
 }
 
-function getUserFileName ($user_id) {
-    return DATA_DIR.'/user/'.$user_id.'.dat';
+function getUserFileName ($user_id, $type) {
+    return DATA_DIR.'/user/'.$user_id.'.'.$type.'.dat';
 }
