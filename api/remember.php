@@ -19,7 +19,7 @@ $recommend_data = array();
 // 2.1 キャッシュあればメモリから取得
 // 2.2 なければjsonから読み取り、キャッシュ化
 $pg_data = loadPgFromJson();
-$user_info = loadUserInfo ($user_id, 'rememebr');
+$user_info = loadUserInfo ($user_id, 'remember');
 
 if (!$pg_data || !$user_info) {
     header("Content-Type: application/json; charset=utf-8");
