@@ -11,5 +11,5 @@ function loadPgFromJson () {
     $data1 = json_decode($json1, true);
     $data2 = json_decode($json2, true);
 
-    return array_marge( $data1, $data2 );
+    return array_merge( $data1, $data2 );
 }

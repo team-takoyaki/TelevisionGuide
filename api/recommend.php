@@ -16,6 +16,7 @@
 // 5. データ出力
 
 require_once '/var/www/html/api/common.conf';
+require_once '/var/www/html/api/recommend_function.php';
 
 /*
  * 1. パラメータ受け取り
