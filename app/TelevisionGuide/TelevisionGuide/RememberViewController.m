@@ -81,12 +81,12 @@
     
     [self updateVisibleCells];
 }
-
-- (void)swipeRight:(UISwipeGestureRecognizer *)sender
-{
-    NSLog(@"右スワイプがされました．");
-    
-        [self performSegueWithIdentifier:@"gotoMainView" sender:self];
-}
+//
+//- (void)swipeRight:(UISwipeGestureRecognizer *)sender
+//{
+//    NSLog(@"右スワイプがされました．");
+//    
+//        [self performSegueWithIdentifier:@"gotoMainView" sender:self];
+//}
 
 @end
