@@ -19,6 +19,10 @@
 */
 - (void)updateRecommendWithTarget:(id)aTarget selector:(SEL)aSelector;
 - (void)updateRememberWithTarget:(id)aTarget selector:(SEL)aSelector;
+- (void)requestAppList;
+- (void)requestGeoList:(NSString *)geoInfo;
+- (void)requestCompusList:(NSString *)geoInfo;
+- (void)requestIPAddress;
 - (NSArray *)recommend;
 - (NSArray *)remember;
 

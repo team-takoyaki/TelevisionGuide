@@ -11,6 +11,11 @@
 #import "CustomTableViewCell.h"
 
 @interface ViewController ()
+-(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation*)newLocation fromLocation:(CLLocation*)oldLocation;
+-(void)locationManager:(CLLocationManager*)manager didUpdateHeading:(CLHeading*)newHeading;
+
+@property (nonatomic, strong) CLLocationManager *lm;
+
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic) BOOL isSwipe;
 @property (nonatomic, strong) UIImageView *nextHeaderView;
@@ -34,6 +39,18 @@
 //    [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipeLeft:)];
 //    swipeLeftGesture.direction = UISwipeGestureRecognizerDirectionLeft;
     
+    AppManager *manager = [AppManager sharedManager];
+    
+    _lm = [[CLLocationManager alloc] init];
+    _lm.delegate = self;
+    _lm.distanceFilter = 100.0;
+    _lm.desiredAccuracy = kCLLocationAccuracyHundredMeters;
+//    [_lm startUpdatingLocation];
+//    [_lm startUpdatingHeading];
+//    [manager requestAppList];
+    
+    [manager requestIPAddress];
+    
     _nextHeaderView = [[UIImageView alloc] initWithFrame:CGRectMake(_headerView.frame.size.width, _headerView.frame.origin.y, 320, 55)];
     [_nextHeaderView setImage:[UIImage imageNamed:@"remember_title_2.png"]];
     [self.view addSubview:_nextHeaderView];
@@ -52,7 +69,7 @@
     [_tableView setDelegate:_tableView];
     [_tableView setDataSource:_tableView];
     
-    AppManager *manager = [AppManager sharedManager];
+//    AppManager *manager = [AppManager sharedManager];
     [manager updateRecommendWithTarget:self selector:@selector(onUpdateTableViewCell)];
    
 	// Do any additional setup after loading the view, typically from a nib.
@@ -162,6 +179,28 @@
             _nextHeaderView.frame = _originalNextFrame;
         }
 	}
+}
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+{
+    
+    NSLog(@"場所:%f %f", newLocation.coordinate.latitude, newLocation.coordinate.longitude);
+    AppManager *m = [AppManager sharedManager];
+    [m requestGeoList:[NSString stringWithFormat:@"%f,%f", newLocation.coordinate.latitude, newLocation.coordinate.longitude]];
+    [_lm stopUpdatingLocation];
+}
+
+-(void)locationManager:(CLLocationManager*)manager didUpdateHeading:(CLHeading*)newHeading
+{
+    if (newHeading.headingAccuracy < 0) return;
+
+    CLLocationDirection theHeading = ((newHeading.trueHeading > 0) ? newHeading.trueHeading : newHeading.magneticHeading);
+    NSLog(@"場所:%@",  [NSString stringWithFormat:@"Direction : %f", theHeading]);
+    
+    AppManager *m = [AppManager sharedManager];
+    [m requestCompusList:[NSString stringWithFormat:@"%f", theHeading]];
+    
+    [_lm stopUpdatingHeading];
 }
 
 

@@ -7,6 +7,7 @@
 //
 
 #import "AppList.h"
+#import "AppManager.h"
 
 
 @interface AppList()
@@ -15,7 +16,7 @@
 
 @implementation AppList
 
-+ (void) sendAppList
++ (NSString *)getAppList
 {
 
     NSMutableArray *appList = [NSMutableArray array];
@@ -32,7 +33,7 @@
     // ファイルが存在しないか?
     if (![fileManager fileExistsAtPath:path]) { // yes
         NSLog(@"plistが存在しません．");
-        return;
+        return @"";
     }
  
     // plistを読み込む
@@ -54,10 +55,10 @@
     }
 
     if ([appList count] == 0) {
-        return;
+        return @"";
     }
 
-    NSString *baseString = @"app=";
+    NSString *baseString = @"";
     int count = 1;
     
     for (NSString *appName in appList) {
@@ -70,9 +71,7 @@
         count++;
     }
 
-    //ここでURL送る処理書いといね
-
-    NSLog(@"%@", baseString);
+    return baseString;
 }
 
 @end

@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "CustomTableView.h"
+#import <CoreLocation/CoreLocation.h>
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <CLLocationManagerDelegate>
 @property (strong, nonatomic) IBOutlet CustomTableView *tableView;
 @property (weak, nonatomic) IBOutlet UIImageView *headerView;
+
 
 @end

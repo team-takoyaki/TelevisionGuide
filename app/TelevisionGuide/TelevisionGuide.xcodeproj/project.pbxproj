@@ -36,6 +36,8 @@
 		59E9DE5D18B001E400A0A6CC /* remember_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 59E9DE5B18B001E400A0A6CC /* remember_bg.png */; };
 		59E9DE5E18B001E400A0A6CC /* remember_title.png in Resources */ = {isa = PBXBuildFile; fileRef = 59E9DE5C18B001E400A0A6CC /* remember_title.png */; };
 		59E9DE6018B00D4E00A0A6CC /* remember_title_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 59E9DE5F18B00D4E00A0A6CC /* remember_title_2.png */; };
+		59E9DE6218B0123100A0A6CC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59E9DE6118B0123100A0A6CC /* CoreLocation.framework */; };
+		59E9DE6518B0128D00A0A6CC /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 59E9DE6418B0128D00A0A6CC /* Location.m */; };
 		B24B475CB2024074AB01C022 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C07899F003A242199D49A26F /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -92,6 +94,10 @@
 		59E9DE5B18B001E400A0A6CC /* remember_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = remember_bg.png; sourceTree = "<group>"; };
 		59E9DE5C18B001E400A0A6CC /* remember_title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = remember_title.png; sourceTree = "<group>"; };
 		59E9DE5F18B00D4E00A0A6CC /* remember_title_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = remember_title_2.png; sourceTree = "<group>"; };
+		59E9DE6118B0123100A0A6CC /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		59E9DE6318B0128D00A0A6CC /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
+		59E9DE6418B0128D00A0A6CC /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
+		59E9DE6618B01C0700A0A6CC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		C07899F003A242199D49A26F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF469E22BE6B491E8F5FD9D7 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -101,6 +107,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59E9DE6218B0123100A0A6CC /* CoreLocation.framework in Frameworks */,
 				164FE2E018AFD5030066427E /* MediaPlayer.framework in Frameworks */,
 				5977EED718AA42E000E0974F /* CoreGraphics.framework in Frameworks */,
 				5977EED918AA42E000E0974F /* UIKit.framework in Frameworks */,
@@ -146,6 +153,8 @@
 		5977EED318AA42E000E0974F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				59E9DE6618B01C0700A0A6CC /* SystemConfiguration.framework */,
+				59E9DE6118B0123100A0A6CC /* CoreLocation.framework */,
 				164FE2DF18AFD5030066427E /* MediaPlayer.framework */,
 				5977EED418AA42E000E0974F /* Foundation.framework */,
 				5977EED618AA42E000E0974F /* CoreGraphics.framework */,
@@ -183,6 +192,8 @@
 				164FE2DD18AFD35C0066427E /* MusicList.m */,
 				16A16D9418AFE901006FE0AB /* YouTube.h */,
 				16A16D9518AFE901006FE0AB /* YouTube.m */,
+				59E9DE6318B0128D00A0A6CC /* Location.h */,
+				59E9DE6418B0128D00A0A6CC /* Location.m */,
 			);
 			path = TelevisionGuide;
 			sourceTree = "<group>";
@@ -376,6 +387,7 @@
 				164FE2DE18AFD35C0066427E /* MusicList.m in Sources */,
 				59C8727518AFC163002B94EF /* CustomTableViewCell.m in Sources */,
 				59C8726218AF719A002B94EF /* AppManager.m in Sources */,
+				59E9DE6518B0128D00A0A6CC /* Location.m in Sources */,
 				59C8726518AF798D002B94EF /* Program.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -504,7 +516,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Takumi Kashima (U3G33TW96T)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Takumi Kashima (DEM3ZKARBK)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TelevisionGuide/TelevisionGuide-Prefix.pch";
 				INFOPLIST_FILE = "TelevisionGuide/TelevisionGuide-Info.plist";

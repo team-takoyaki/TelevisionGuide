@@ -8,8 +8,16 @@
 
 #import "AppManager.h"
 #import <AFNetworking.h>
+#import "AppList.h"
+#import <ifaddrs.h>
+#import <arpa/inet.h>
 
 #define RECOMMEND_URL @"http://api.team-takoyaki.com/recommend.php"
+#define REMEMBER_URL @"http://api.team-takoyaki.com/dev/remember.json"
+#define REQUEST_APP_URL @"http://api.team-takoyaki.com/recommend.php"
+#define REQUEST_GEO_URL @"http://api.team-takoyaki.com/recommend.php"
+#define REQUEST_COMPUS_URL @"http://api.team-takoyaki.com/recommend.php"
+#define REQUEST_IP_ADDRESS_URL @"http://api.team-takoyaki.com/recommend.php"
 
 @interface AppManager()
 - (void)initUUID;
@@ -80,7 +88,7 @@ static AppManager* sharedInstance = nil;
 
 - (void)updateRememberWithTarget:(id)aTarget selector:(SEL)aSelector
 {
-    NSString *urlString = [NSString stringWithFormat:@"%@?user_id=%@", RECOMMEND_URL, _UUID];
+    NSString *urlString = [NSString stringWithFormat:@"%@?user_id=%@", REMEMBER_URL, _UUID];
 
     NSLog(@"REQUEST URL: %@", urlString);
 
@@ -194,6 +202,87 @@ static AppManager* sharedInstance = nil;
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
     }];
+}
+
+- (void)requestAppList
+{
+    NSString *appListParam = [AppList getAppList];
+
+    NSString *urlString = [NSString stringWithFormat:@"%@?app=%@", REQUEST_APP_URL, appListParam];
+
+    NSLog(@"REQUEST URL: %@", urlString);
+
+    AFHTTPRequestOperationManager* manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+}
+
+- (void)requestGeoList:(NSString *)geoInfo
+{
+    NSString *urlString = [NSString stringWithFormat:@"%@?geo=%@", REQUEST_GEO_URL, geoInfo];
+
+    NSLog(@"REQUEST URL: %@", urlString);
+
+    AFHTTPRequestOperationManager* manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+}
+
+- (void)requestCompusList:(NSString *)geoInfo
+{
+    NSString *urlString = [NSString stringWithFormat:@"%@?compus=%@", REQUEST_COMPUS_URL, geoInfo];
+
+    NSLog(@"REQUEST URL: %@", urlString);
+
+    AFHTTPRequestOperationManager* manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+}
+
+- (void)requestIPAddress
+{
+
+    NSString *urlString = [NSString stringWithFormat:@"%@?ip=%@", REQUEST_IP_ADDRESS_URL, [self getIPAddress]];
+
+    NSLog(@"REQUEST URL: %@", urlString);
+
+    AFHTTPRequestOperationManager* manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+}
+
+- (NSString *)getIPAddress {
+    NSString *address = @"";
+    struct ifaddrs *interfaces = NULL;
+    struct ifaddrs *temp_addr = NULL;
+    int success = 0;
+    success = getifaddrs(&interfaces);
+    if (success == 0) {
+        temp_addr = interfaces;
+        while(temp_addr != NULL) {
+            if(temp_addr->ifa_addr->sa_family == AF_INET) {
+                if([[NSString stringWithUTF8String:temp_addr->ifa_name] isEqualToString:@"pdp_ip0"] ||
+                   [[NSString stringWithUTF8String:temp_addr->ifa_name] isEqualToString:@"en0"]) {
+                    address = [NSString stringWithUTF8String:inet_ntoa(((struct sockaddr_in *)temp_addr->ifa_addr)->sin_addr)];
+                }
+            }
+            temp_addr = temp_addr->ifa_next;
+        }
+    }
+    freeifaddrs(interfaces);
+    return address;
 }
 
 @end
