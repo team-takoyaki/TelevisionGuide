@@ -3,7 +3,7 @@
 // 毎朝6時更新だよ
 // document : http://api-portal.nhk.or.jp/doc_list-v1_con
 
-require_once 'get_daily_program.conf';
+require_once ROOT_DIR.'/batch/get_daily_program.conf';
 
 // 取得日付設定
 $date = strftime('%Y-%m-%d', strtotime('+1 days',time()));
