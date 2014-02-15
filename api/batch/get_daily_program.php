@@ -40,10 +40,10 @@ function getProgramList ($url) {
         $data['list']['s1'],
         $data['list']['s2'],
         $data['list']['s3'],
-        $data['list']['s4'],
+        $data['list']['s4']
     );
 
-    usert($ret, function ($a, $b) {
+    usort($ret, function ($a, $b) {
             return $a['id'] < $b['id'];
         });
 
