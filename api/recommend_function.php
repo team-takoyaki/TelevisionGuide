@@ -33,27 +33,26 @@ function loadUserInfo ($user_id, $type) {
 
 function saveUserInfo ($user_id, $type, $data) {
     $file = getUserFileName ($user_id, $type);
-    
+    $saved_data = array(
+                        'pg_id' => array(),
+                        'title' => array(),
+                        );
     if (file_exists($file)) {
-        $saved_data = loadUserInfo($user_id);
-        $save_data = $saved_data;
-
-        // remmember title について
-        if (isset($saved_data['title'])) {
-            $save_data['title'] = array_unique(array_merge($data['title'],$saved_data['title']));
+        $saved_data = loadUserInfo($user_id, $type);
+        if (!is_array($saved_data['title'])) {
+            $saved_data['title'] = array();
         }
-
-        if (isset($saved_data['pg_id'])) {
-            $save_data['pg_id'] = array_unique(array_merge($data['pg_id'],$saved_data['pg_id']));
+        if (!is_array($saved_data['pg_id'])) {
+            $saved_data['pg_id'] = array();
         }        
-        
-
-        // ...
-    } else {
-        $save_data = $saved_data;
     }
+    
+    // remmember title について
+    $saved_data['title'] = array_unique(array_merge($data['title'],$saved_data['title']));
+    array_push($saved_data['pg_id'],$data['pg_id']);
+    $saved_data['pg_id'] = array_unique($saved_data['pg_id']);
 
-    return file_put_contents($file, serialize($save_data));
+    return file_put_contents($file, serialize($saved_data));
 }
 
 function getUserFileName ($user_id, $type) {
