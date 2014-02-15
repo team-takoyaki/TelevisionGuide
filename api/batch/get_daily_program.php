@@ -21,7 +21,7 @@ foreach ($program_list as $program) {
         .http_build_query(array(
                                 'a' => '001',
                                 'd' => $date,
-                                'c' => '21',
+                                'c' => $SERVECE_INDEX[$program['service']['id']],
                                 'e' => $program['event_id']*1,
                                 ));
 }
