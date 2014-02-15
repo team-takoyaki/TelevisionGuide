@@ -31,18 +31,27 @@ $recommend_data = array();
 // 2.2 なければjsonから読み取り、キャッシュ化
 $pg_data = loadPgFromJson();
 
+// 2.3 各種文字列整形処理
+$pg_data = execEtcProsess($pg_data);
+
 
 /*
  * 3. ユーザ情報処理
  */
-// forget処理
+//  forget処理
 if ($user_id) {
-    $forget_data = loadUserInfo($user_id, 'forget');
+    $forget_data   = loadUserInfo($user_id, 'forget');
     if ($forget_data) {
         $pg_data = removePgData($pg_data, $forget_data['pg_id']);
     }
 }
-
+// remember処理
+if ($user_id) {
+    $remember_data = loadUserInfo($user_id, 'remember');
+    if ($forget_data) {
+        $pg_data = removePgData($pg_data, $remember_data['pg_id']);
+    }
+}
 
 
 $recommend_data = $pg_data;
