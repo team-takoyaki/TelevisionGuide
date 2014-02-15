@@ -9,7 +9,7 @@
 #import "AppManager.h"
 #import <AFNetworking.h>
 
-#define RECOMMEND_URL @"http://api.team-takoyaki.com/dev/recommend.json"
+#define RECOMMEND_URL @"http://api.team-takoyaki.com/recommend.php"
 
 @interface AppManager()
 - (void)initUUID;
@@ -90,7 +90,7 @@ static AppManager* sharedInstance = nil;
             [program setProgramTitle:pTitle];
             
             NSString *pSubTitle = (NSString *)[dict objectForKey:@"subtitle"];
-            [program setProgramTitle:pSubTitle];
+            [program setProgramSubTitle:pSubTitle];
             
             NSString *eId = (NSString *)[dict objectForKey:@"event_id"];
             [program setEventId:eId];
