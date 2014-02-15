@@ -35,5 +35,5 @@ $recommend_data = $pg_data;
  * 5. データ出力
  */
 header("Content-Type: application/json; charset=utf-8");
-echo $encode_json($recommend_data);
+echo json_encode($recommend_data);
 exit;
