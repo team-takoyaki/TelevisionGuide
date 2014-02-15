@@ -18,7 +18,9 @@
 *                    selector:@selector(callback)];
 */
 - (void)updateRecommendWithTarget:(id)aTarget selector:(SEL)aSelector;
+- (void)updateRememberWithTarget:(id)aTarget selector:(SEL)aSelector;
 - (NSArray *)recommend;
+- (NSArray *)remember;
 
 @property (strong, nonatomic, readonly) NSString *UUID;
 @end

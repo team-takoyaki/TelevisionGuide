@@ -21,9 +21,9 @@
     [super viewDidLoad];
 
     UISwipeGestureRecognizer *swipeLeftGesture =
-    [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(view_SwipeLeft:)];
-    
+    [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipeLeft:)];
     swipeLeftGesture.direction = UISwipeGestureRecognizerDirectionLeft;
+    
     self.headerView.userInteractionEnabled = YES;
     [self.headerView addGestureRecognizer:swipeLeftGesture];
     
@@ -82,9 +82,11 @@
     [self updateVisibleCells];
 }
 
-- (void)view_SwipeLeft:(UISwipeGestureRecognizer *)sender
+- (void)swipeLeft:(UISwipeGestureRecognizer *)sender
 {
     NSLog(@"左スワイプがされました．");
+    
+    [self performSegueWithIdentifier:@"gotoRememberView" sender:self];
 }
 
 @end

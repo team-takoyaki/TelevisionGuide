@@ -16,12 +16,14 @@
 
 @property (strong, nonatomic, readwrite) NSString *UUID;
 @property (strong, nonatomic) NSMutableArray *recommend;
+@property (strong, nonatomic) NSMutableArray *remember;
 @end
 
 @implementation AppManager
 
 @synthesize UUID = _UUID;
 @synthesize recommend = _recommend;
+@synthesize remember = _remember;
 
 static AppManager* sharedInstance = nil;
  
@@ -41,6 +43,7 @@ static AppManager* sharedInstance = nil;
     if (manager) {
         [manager initUUID];
         _recommend = [[NSMutableArray alloc] init];
+        _remember = [[NSMutableArray alloc] init];
     }
     return manager;
 }
@@ -68,6 +71,70 @@ static AppManager* sharedInstance = nil;
 - (NSArray *)recommend
 {
     return (NSArray *)_recommend;
+}
+
+- (NSArray *)remember
+{
+    return (NSArray *)_remember;
+}
+
+- (void)updateRememberWithTarget:(id)aTarget selector:(SEL)aSelector
+{
+    NSString *urlString = [NSString stringWithFormat:@"%@?user_id=%@", RECOMMEND_URL, _UUID];
+
+    NSLog(@"REQUEST URL: %@", urlString);
+
+    AFHTTPRequestOperationManager* manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        // NSLog(@"response: %@", responseObject);
+        _remember = [[NSMutableArray alloc] init];
+        NSArray *programs = (NSArray *)responseObject;
+        for (NSDictionary *dict in programs) {
+            Program *program = [[Program alloc] init];
+            NSString *pId = (NSString *)[dict objectForKey:@"id"];
+            [program setProgramId:pId];
+            
+            NSString *pTitle = (NSString *)[dict objectForKey:@"title"];
+            [program setProgramTitle:pTitle];
+            
+            NSString *pSubTitle = (NSString *)[dict objectForKey:@"subtitle"];
+            [program setProgramSubTitle:pSubTitle];
+            
+            NSString *eId = (NSString *)[dict objectForKey:@"event_id"];
+            [program setEventId:eId];
+            
+            NSString *sTime = (NSString *)[dict objectForKey:@"start_time"];
+            [program setStartTime:sTime];
+            
+            NSString *eTime = (NSString *)[dict objectForKey:@"end_time"];
+            [program setEndTime:eTime];
+            
+            NSDictionary *dict2 = (NSDictionary *)[dict objectForKey:@"service"];
+            NSString *sId = (NSString *)[dict2 objectForKey:@"id"];
+            [program setServiceId:sId];
+            
+            NSString *sName = (NSString *)[dict2 objectForKey:@"name"];
+            [program setServiceName:sName];
+            
+            NSString *pUrl = (NSString *)[dict objectForKey:@"nhk_online_url"];
+            [program setProgramUrl:pUrl];
+            
+            [_remember addObject:program];
+        }
+        
+        #pragma clang diagnostic push
+        #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+        if (aTarget && aSelector) {
+            [aTarget performSelector:aSelector];
+        }
+        #pragma clang diagnostic pop
+//        for (Program *p in _recommend) {
+//            NSLog(@"ProgramName: %@", [p programTitle]);
+//        }
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
 }
 
 - (void)updateRecommendWithTarget:(id)aTarget selector:(SEL)aSelector
