@@ -36,6 +36,7 @@ function saveUserInfo ($user_id, $type, $data) {
     
     if (file_exists($file)) {
         $saved_data = loadUserInfo($user_id);
+        $save_data = $saved_data;
 
         // remmember title について
         if (isset($saved_data['title'])) {
@@ -48,9 +49,11 @@ function saveUserInfo ($user_id, $type, $data) {
         
 
         // ...
+    } else {
+        $save_data = $saved_data;
     }
 
-    return file_put_contents($file, serialize($data));
+    return file_put_contents($file, serialize($save_data));
 }
 
 function getUserFileName ($user_id, $type) {
