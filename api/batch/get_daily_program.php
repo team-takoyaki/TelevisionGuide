@@ -16,7 +16,7 @@ $url = createUrl($date);
 $program_list = getProgramList($url);
 
 // ファイルに書き出し
-$filename = SAVE_DIR.'/pg/'.$date.'.tv.json';
+$filename = DATA_DIR.'/pg/'.$date.'.tv.json';
 file_put_contents($filename, json_encode($program_list));
 
 exit;
