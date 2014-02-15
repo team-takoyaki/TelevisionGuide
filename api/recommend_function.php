@@ -47,6 +47,16 @@ function saveUserInfo ($user_id, $data) {
             }
         }
 
+        // forget title について
+        if (isset($data['forget']) || isset($data['forget']['title'])) {
+            if (isset($saved_data['forget']) && isset($saved_data['forget']['title'])) {
+                $data['forget']['title'] = array_unique(
+                    array_merge($data['forget']['title'],
+                                $saved_data['forget']['title']
+                                ));
+            }
+        }        
+
         // ...
     }
 
