@@ -38,6 +38,7 @@
 		59E9DE6018B00D4E00A0A6CC /* remember_title_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 59E9DE5F18B00D4E00A0A6CC /* remember_title_2.png */; };
 		59E9DE6218B0123100A0A6CC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59E9DE6118B0123100A0A6CC /* CoreLocation.framework */; };
 		59E9DE6518B0128D00A0A6CC /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 59E9DE6418B0128D00A0A6CC /* Location.m */; };
+		59E9DE6B18B02A5B00A0A6CC /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59E9DE6A18B02A5B00A0A6CC /* AddressBookUI.framework */; };
 		B24B475CB2024074AB01C022 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C07899F003A242199D49A26F /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -98,6 +99,8 @@
 		59E9DE6318B0128D00A0A6CC /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
 		59E9DE6418B0128D00A0A6CC /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
 		59E9DE6618B01C0700A0A6CC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		59E9DE6818B0277500A0A6CC /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		59E9DE6A18B02A5B00A0A6CC /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		C07899F003A242199D49A26F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF469E22BE6B491E8F5FD9D7 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -107,6 +110,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59E9DE6B18B02A5B00A0A6CC /* AddressBookUI.framework in Frameworks */,
 				59E9DE6218B0123100A0A6CC /* CoreLocation.framework in Frameworks */,
 				164FE2E018AFD5030066427E /* MediaPlayer.framework in Frameworks */,
 				5977EED718AA42E000E0974F /* CoreGraphics.framework in Frameworks */,
@@ -153,6 +157,8 @@
 		5977EED318AA42E000E0974F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				59E9DE6A18B02A5B00A0A6CC /* AddressBookUI.framework */,
+				59E9DE6818B0277500A0A6CC /* AddressBook.framework */,
 				59E9DE6618B01C0700A0A6CC /* SystemConfiguration.framework */,
 				59E9DE6118B0123100A0A6CC /* CoreLocation.framework */,
 				164FE2DF18AFD5030066427E /* MediaPlayer.framework */,

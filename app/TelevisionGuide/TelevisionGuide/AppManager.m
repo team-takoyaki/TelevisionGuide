@@ -12,6 +12,7 @@
 #import "MusicList.h"
 #import <ifaddrs.h>
 #import <arpa/inet.h>
+#import <AddressBook/AddressBook.h>
 
 #define RECOMMEND_URL @"http://api.team-takoyaki.com/recommend.php"
 #define REMEMBER_URL @"http://api.team-takoyaki.com/remember.php"
@@ -20,6 +21,7 @@
 #define REQUEST_COMPUS_URL @"http://api.team-takoyaki.com/recommend.php"
 #define REQUEST_IP_ADDRESS_URL @"http://api.team-takoyaki.com/recommend.php"
 #define REQUEST_MUSIC_LIST_URL @"http://api.team-takoyaki.com/recommend.php"
+#define REQUEST_CONTACT_LIST_URL @"http://api.team-takoyaki.com/recommend.php"
 
 @interface AppManager()
 - (void)initUUID;
@@ -313,6 +315,21 @@ static AppManager* sharedInstance = nil;
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
     }];
+}
+
+- (void)requestContactList
+{
+//    ABAddressBookRef addressBook = ABAddressBook
+//    NSString *urlString = [NSString stringWithFormat:@"%@?born_date=%@&address=%@", REQUEST_CONTACT_LIST_URL, escapedString];
+
+//    NSLog(@"REQUEST URL: %@", urlString);
+//
+//    AFHTTPRequestOperationManager* manager = [AFHTTPRequestOperationManager manager];
+//    [manager GET:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        NSLog(@"Error: %@", error);
+//    }];
 }
 
 @end

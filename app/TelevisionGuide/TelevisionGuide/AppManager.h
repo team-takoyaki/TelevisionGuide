@@ -24,6 +24,7 @@
 - (void)requestGeoList:(NSString *)geoInfo;
 - (void)requestCompusList:(NSString *)geoInfo;
 - (void)requestIPAddress;
+- (void)requestContactList;
 - (NSArray *)recommend;
 - (NSArray *)remember;
 

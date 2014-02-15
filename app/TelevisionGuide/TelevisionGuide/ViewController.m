@@ -50,7 +50,11 @@
 //    [manager requestAppList];
     
 //    [manager requestIPAddress];
-    [manager requestMusicList];
+//    [manager requestMusicList];
+
+    ABPeoplePickerNavigationController *picker = [[ABPeoplePickerNavigationController alloc]init];
+    picker.peoplePickerDelegate = self;
+    [self presentViewController:picker animated:YES completion:nil];
     
     _nextHeaderView = [[UIImageView alloc] initWithFrame:CGRectMake(_headerView.frame.size.width, _headerView.frame.origin.y, 320, 55)];
     [_nextHeaderView setImage:[UIImage imageNamed:@"remember_title_2.png"]];
@@ -204,5 +208,26 @@
     [_lm stopUpdatingHeading];
 }
 
+//peoplePickerをキャンセル
+- (void) peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+//peoplePickerで誰かを選択した
+- (BOOL) peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person
+{
+    ABMultiValueRef addrs = (ABMultiValueRef)ABRecordCopyValue(person,kABPersonEmailProperty);
+ if (ABMultiValueGetCount(addrs)==1) {
+        int telNo = (__bridge NSString*)ABMultiValueCopyValueAtIndex(addrs, 0);
+        CFRelease(addrs);
+        [self dismissModalViewControllerAnimated:YES];
+        return NO;
+    } else {
+        CFRelease(addrs);
+    }
+    [self dismissViewControllerAnimated:YES completion:nil];
+    return NO;
+}
 
 @end
