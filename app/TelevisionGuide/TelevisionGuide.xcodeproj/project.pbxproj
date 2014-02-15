@@ -12,6 +12,9 @@
 		164FE2DB18AFC1B70066427E /* schemes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 164FE2DA18AFC1B70066427E /* schemes.plist */; };
 		164FE2DE18AFD35C0066427E /* MusicList.m in Sources */ = {isa = PBXBuildFile; fileRef = 164FE2DD18AFD35C0066427E /* MusicList.m */; };
 		164FE2E018AFD5030066427E /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 164FE2DF18AFD5030066427E /* MediaPlayer.framework */; };
+		168C9C6018B002A1008721CF /* JTTableViewGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 168C9C5B18B002A1008721CF /* JTTableViewGestureRecognizer.m */; };
+		168C9C6118B002A1008721CF /* JTTransformableTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 168C9C5D18B002A1008721CF /* JTTransformableTableViewCell.m */; };
+		168C9C6218B002A1008721CF /* UIColor+JTGestureBasedTableViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 168C9C5F18B002A1008721CF /* UIColor+JTGestureBasedTableViewHelper.m */; };
 		16A16D9618AFE901006FE0AB /* YouTube.m in Sources */ = {isa = PBXBuildFile; fileRef = 16A16D9518AFE901006FE0AB /* YouTube.m */; };
 		5977EED518AA42E000E0974F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5977EED418AA42E000E0974F /* Foundation.framework */; };
 		5977EED718AA42E000E0974F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5977EED618AA42E000E0974F /* CoreGraphics.framework */; };
@@ -56,6 +59,12 @@
 		164FE2DC18AFD35C0066427E /* MusicList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicList.h; sourceTree = "<group>"; };
 		164FE2DD18AFD35C0066427E /* MusicList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicList.m; sourceTree = "<group>"; };
 		164FE2DF18AFD5030066427E /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		168C9C5A18B002A1008721CF /* JTTableViewGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JTTableViewGestureRecognizer.h; path = TelevisionGuide/JTTableViewGestureRecognizer.h; sourceTree = "<group>"; };
+		168C9C5B18B002A1008721CF /* JTTableViewGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JTTableViewGestureRecognizer.m; path = TelevisionGuide/JTTableViewGestureRecognizer.m; sourceTree = "<group>"; };
+		168C9C5C18B002A1008721CF /* JTTransformableTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JTTransformableTableViewCell.h; path = TelevisionGuide/JTTransformableTableViewCell.h; sourceTree = "<group>"; };
+		168C9C5D18B002A1008721CF /* JTTransformableTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JTTransformableTableViewCell.m; path = TelevisionGuide/JTTransformableTableViewCell.m; sourceTree = "<group>"; };
+		168C9C5E18B002A1008721CF /* UIColor+JTGestureBasedTableViewHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+JTGestureBasedTableViewHelper.h"; path = "TelevisionGuide/UIColor+JTGestureBasedTableViewHelper.h"; sourceTree = "<group>"; };
+		168C9C5F18B002A1008721CF /* UIColor+JTGestureBasedTableViewHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+JTGestureBasedTableViewHelper.m"; path = "TelevisionGuide/UIColor+JTGestureBasedTableViewHelper.m"; sourceTree = "<group>"; };
 		16A16D9418AFE901006FE0AB /* YouTube.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouTube.h; sourceTree = "<group>"; };
 		16A16D9518AFE901006FE0AB /* YouTube.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YouTube.m; sourceTree = "<group>"; };
 		5977EED118AA42E000E0974F /* TelevisionGuide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TelevisionGuide.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -122,6 +131,12 @@
 		5977EEC818AA42E000E0974F = {
 			isa = PBXGroup;
 			children = (
+				168C9C5A18B002A1008721CF /* JTTableViewGestureRecognizer.h */,
+				168C9C5B18B002A1008721CF /* JTTableViewGestureRecognizer.m */,
+				168C9C5C18B002A1008721CF /* JTTransformableTableViewCell.h */,
+				168C9C5D18B002A1008721CF /* JTTransformableTableViewCell.m */,
+				168C9C5E18B002A1008721CF /* UIColor+JTGestureBasedTableViewHelper.h */,
+				168C9C5F18B002A1008721CF /* UIColor+JTGestureBasedTableViewHelper.m */,
 				164FE2DA18AFC1B70066427E /* schemes.plist */,
 				5977EEDA18AA42E000E0974F /* TelevisionGuide */,
 				5977EEF918AA42E000E0974F /* TelevisionGuideTests */,
@@ -359,14 +374,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				168C9C6118B002A1008721CF /* JTTransformableTableViewCell.m in Sources */,
 				5977EEEB18AA42E000E0974F /* ViewController.m in Sources */,
 				164FE2D718AFB8710066427E /* AppList.m in Sources */,
 				5977EEE518AA42E000E0974F /* AppDelegate.m in Sources */,
 				59C8727218AFBDA9002B94EF /* CustomTableView.m in Sources */,
+				168C9C6218B002A1008721CF /* UIColor+JTGestureBasedTableViewHelper.m in Sources */,
 				16A16D9618AFE901006FE0AB /* YouTube.m in Sources */,
 				59C8726D18AF9046002B94EF /* RememberViewController.m in Sources */,
 				5977EEE118AA42E000E0974F /* main.m in Sources */,
 				164FE2DE18AFD35C0066427E /* MusicList.m in Sources */,
+				168C9C6018B002A1008721CF /* JTTableViewGestureRecognizer.m in Sources */,
 				164FE2D418AF68060066427E /* RecommendViewController.m in Sources */,
 				59C8727518AFC163002B94EF /* CustomTableViewCell.m in Sources */,
 				59C8726218AF719A002B94EF /* AppManager.m in Sources */,
