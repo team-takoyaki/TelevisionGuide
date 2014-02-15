@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		164FE2D418AF68060066427E /* RecomendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 164FE2D318AF68060066427E /* RecomendViewController.m */; };
 		5977EED518AA42E000E0974F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5977EED418AA42E000E0974F /* Foundation.framework */; };
 		5977EED718AA42E000E0974F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5977EED618AA42E000E0974F /* CoreGraphics.framework */; };
 		5977EED918AA42E000E0974F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5977EED818AA42E000E0974F /* UIKit.framework */; };
@@ -34,6 +35,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		164FE2D218AF68060066427E /* RecomendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecomendViewController.h; sourceTree = "<group>"; };
+		164FE2D318AF68060066427E /* RecomendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecomendViewController.m; sourceTree = "<group>"; };
 		5977EED118AA42E000E0974F /* TelevisionGuide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TelevisionGuide.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5977EED418AA42E000E0974F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5977EED618AA42E000E0974F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -115,6 +118,8 @@
 				5977EEE318AA42E000E0974F /* AppDelegate.h */,
 				5977EEE418AA42E000E0974F /* AppDelegate.m */,
 				5977EEE618AA42E000E0974F /* Main.storyboard */,
+				164FE2D218AF68060066427E /* RecomendViewController.h */,
+				164FE2D318AF68060066427E /* RecomendViewController.m */,
 				5977EEE918AA42E000E0974F /* ViewController.h */,
 				5977EEEA18AA42E000E0974F /* ViewController.m */,
 				5977EEEC18AA42E000E0974F /* Images.xcassets */,
@@ -252,6 +257,7 @@
 				5977EEEB18AA42E000E0974F /* ViewController.m in Sources */,
 				5977EEE518AA42E000E0974F /* AppDelegate.m in Sources */,
 				5977EEE118AA42E000E0974F /* main.m in Sources */,
+				164FE2D418AF68060066427E /* RecomendViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
