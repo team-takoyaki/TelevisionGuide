@@ -30,16 +30,22 @@ $recommend_data = array();
 // 2.1 キャッシュあればメモリから取得
 // 2.2 なければjsonから読み取り、キャッシュ化
 $pg_data = loadPgFromJson();
-$recommend_data = $pg_data;
+
 
 /*
  * 3. ユーザ情報処理
  */
 // forget処理
-//loadUserInfo($user_id, 'forget');
+if ($user_id) {
+    $forget_data = loadUserInfo($user_id, 'forget');
+    if ($forget_data) {
+        $pg_data = removePgData($pg_data, $forget_data['pg_id']);
+    }
+}
 
 
 
+$recommend_data = $pg_data;
 
 /*
  * 5. データ出力

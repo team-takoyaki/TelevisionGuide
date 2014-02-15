@@ -22,6 +22,19 @@ function loadPgFromJson () {
     return $ret;
 }
 
+function removePgData($pg_data, $forget_data) {
+    $ret = array();
+    foreach ($pg_data as $pg) {
+        foreach ($forget_data as $id) {
+            if ($pg['id'] !== $id) {
+                array_push($ret, $pg);
+            }
+        }
+    }
+    return $ret;
+}
+
+
 function loadUserInfo ($user_id, $type) {
     $file = getUserFileName ($user_id, $type);
     if (file_exists($file)) {
