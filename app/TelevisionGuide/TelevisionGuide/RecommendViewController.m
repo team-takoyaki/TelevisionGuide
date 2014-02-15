@@ -253,17 +253,23 @@
         cell.contentView.backgroundColor = [UIColor whiteColor];
         
         ////ここを編集
-        cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"suntv.png"]];
         UIView *cellView = [[UIView alloc] init];
 
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(250,0,70,cell.frame.size.height)];
-        label.backgroundColor = [UIColor grayColor];
-        label.text = @"絶対見ない";
-        label.font = [UIFont systemFontOfSize:12];
-        label.textAlignment = UITextAlignmentCenter;
-        [cellView addSubview:label];
+        UILabel *labelForget = [[UILabel alloc] initWithFrame:CGRectMake(250,0,70,cell.frame.size.height)];
+        labelForget.backgroundColor = [UIColor grayColor];
+        labelForget.text = @"絶対見ない";
+        labelForget.font = [UIFont systemFontOfSize:12];
+        labelForget.textAlignment = UITextAlignmentCenter;
+        
+        UILabel *labelRemember = [[UILabel alloc] initWithFrame:CGRectMake(0,0,70,cell.frame.size.height)];
+        labelRemember.backgroundColor = [UIColor grayColor];
+        labelRemember.text = @"絶対見たい";
+        labelRemember.font = [UIFont systemFontOfSize:12];
+        labelRemember.textAlignment = UITextAlignmentCenter;
+        [cellView addSubview:labelRemember];
+        
+        
         cell.backgroundView = cellView;
-//        cell.backgroundView ;
         return cell;
     }
 }

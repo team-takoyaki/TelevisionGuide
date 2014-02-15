@@ -10,6 +10,6 @@
 
 @interface AppList : NSObject
 
-+ (void) sendAppList;
++ (NSString *)getAppList;
 
 @end

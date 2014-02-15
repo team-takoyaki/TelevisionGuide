@@ -43,7 +43,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="581" y="40"/>
+            <point key="canvasLocation" x="495" y="40"/>
         </scene>
         <!--Remember View Controller-->
         <scene sceneID="6Rf-EK-ieS">
@@ -83,7 +83,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Om7-Sq-sn0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="945" y="40"/>
+            <point key="canvasLocation" x="1067" y="40"/>
         </scene>
     </scenes>
     <resources>

@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "CustomTableView.h"
+#import <CoreLocation/CoreLocation.h>
+#import <AddressBookUI/AddressBookUI.h>
 
-@interface ViewController : UIViewController 
+@interface ViewController : UIViewController <CLLocationManagerDelegate, ABPeoplePickerNavigationControllerDelegate>
 @property (strong, nonatomic) IBOutlet CustomTableView *tableView;
 @property (weak, nonatomic) IBOutlet UIImageView *headerView;
 @end
