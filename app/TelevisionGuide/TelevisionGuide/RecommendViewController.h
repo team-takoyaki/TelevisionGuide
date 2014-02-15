@@ -10,5 +10,7 @@
 
 @interface RecommendViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
 
+@property (nonatomic, retain) NSArray *programArray;
+
 @end
 

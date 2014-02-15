@@ -15,6 +15,17 @@ $url = createUrl($date);
 // プログラムリスト取得
 $program_list = getProgramList($url);
 
+// NHKオンラインのURL追加
+foreach ($program_list as $program) {
+    $program['nhk_online_url'] = NHK_ONLINE_URL.'?'
+        .http_build_query(array(
+                                'a' => '001',
+                                'd' => $date,
+                                'c' => $SERVECE_INDEX[$program['service']['id']],
+                                'e' => $program['event_id']*1,
+                                ));
+}
+
 // ファイルに書き出し
 $filename = DATA_DIR.'/pg/'.$date.'.tv.json';
 file_put_contents($filename, json_encode($program_list));
@@ -31,6 +42,21 @@ function createUrl ($date) {
 
 function getProgramList ($url) {
     $data = json_decode(file_get_contents($url), true);
-    return $data['list']['g1'];
-}
+    $ret = array_merge(
+        $data['list']['e1'],
+        $data['list']['e3'],
+        $data['list']['e4'],
+        $data['list']['g1'],
+        $data['list']['g2'],
+        $data['list']['s1'],
+        $data['list']['s2'],
+        $data['list']['s3'],
+        $data['list']['s4']
+    );
 
+    usort($ret, function ($a, $b) {
+            return $a['id'] < $b['id'];
+        });
+
+    return $ret;
+}

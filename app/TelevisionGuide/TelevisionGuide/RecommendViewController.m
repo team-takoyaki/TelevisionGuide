@@ -7,15 +7,16 @@
 //
 
 #import "RecommendViewController.h"
+#import "AppManager.h"
 #import "ViewController.h"
+#import "MusicList.h"
 
 @interface RecommendViewController ()
-
-@property NSArray *programArray;
 
 @end
 
 @implementation RecommendViewController
+@synthesize programArray;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -23,6 +24,7 @@
     if (self) {
         // Custom initialization
     }
+    
     return self;
 }
 
@@ -35,12 +37,28 @@
     UIImageView *imageView = [[UIImageView alloc] initWithImage:mainTitleImage];
     [self.navigationController.navigationBar addSubview:imageView];
     
+    [MusicList sendMusicList];
+    
+    
 	// Do any additional setup after loading the view.
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(onRefresh:) forControlEvents:UIControlEventValueChanged];
-//    self.programArray = nil;
-    self.programArray = [NSArray arrayWithObjects:@"東京", @"名古屋", @"大阪", nil];
+//    AppManager *manager = [AppManager sharedManager];
+//    [manager updateRecommendWithTarget:self selector:@selector(onUpdate)];
+//    self.programArray = [manager recommend];
     self.refreshControl = refreshControl;
+}
+
+- (void)onUpdate
+{
+    AppManager *manager = [AppManager sharedManager];
+    self.programArray = [manager recommend];
+    
+    if (self.refreshControl.refreshing == YES) {
+         [self.refreshControl endRefreshing];
+    }
+    
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -74,16 +92,13 @@
 //行に表示するデータの編集
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    for (int i = 0; i < [self.programArray count]; i++) {
-        NSLog(@"%@", self.programArray[i]);
-    }
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
     }
     
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ %i", @"row", indexPath.row];
+    [self updateCell:cell atIndexPath:indexPath];
     return cell;
 }
 
@@ -105,11 +120,27 @@
     }   
 }
 
+- (void) updateCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    // Update Cells
+    Program *p = self.programArray[indexPath.row];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@", [p programTitle]];
+}
+
+- (void) updateVisibleCells {
+    AppManager *manager = [AppManager sharedManager];
+    [manager updateRecommendWithTarget:self selector:@selector(onUpdate)];
+    self.programArray = [manager recommend];
+    for (UITableViewCell *cell in [self.tableView visibleCells]){
+        [self updateCell:cell atIndexPath:[self.tableView indexPathForCell:cell]];
+    }
+}
+
 
 - (void)onRefresh:(id)sender {
     [self.refreshControl beginRefreshing];
     //この間にデータを表示する処理
-    [self.refreshControl endRefreshing];
+    [self updateVisibleCells];
+//    [self.refreshControl endRefreshing];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
