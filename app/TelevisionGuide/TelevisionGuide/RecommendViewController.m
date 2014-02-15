@@ -33,15 +33,12 @@
     [super viewDidLoad];
     
     
-    [MusicList sendMusicList];
-    
-    
 	// Do any additional setup after loading the view.
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(onRefresh:) forControlEvents:UIControlEventValueChanged];
-//    AppManager *manager = [AppManager sharedManager];
-//    [manager updateRecommendWithTarget:self selector:@selector(onUpdate)];
-//    self.programArray = [manager recommend];
+    AppManager *manager = [AppManager sharedManager];
+    [manager updateRecommendWithTarget:self selector:@selector(onUpdate)];
+    self.programArray = [manager recommend];
     self.refreshControl = refreshControl;
 }
 

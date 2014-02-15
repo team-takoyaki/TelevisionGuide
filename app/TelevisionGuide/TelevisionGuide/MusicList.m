@@ -16,9 +16,9 @@
 
 + (void) sendMusicList
 {
-    NSLog(@"test");
-    MPMediaQuery *query = [MPMediaQuery artistsQuery];
-    NSArray *allTracks = [[[MPMediaQuery alloc] init] items] ;
+
+//    MPMediaQuery *query = [MPMediaQuery artistsQuery];
+//    NSArray *allTracks = [[[MPMediaQuery alloc] init] items] ;
     MPMediaQuery *everything = [[MPMediaQuery alloc] init];
     NSSortDescriptor *sorter = [NSSortDescriptor sortDescriptorWithKey:MPMediaItemPropertyPlayCount ascending:NO];
     NSArray *sortedSongsArray = [[everything items] sortedArrayUsingDescriptors:[NSArray arrayWithObject:sorter]];
