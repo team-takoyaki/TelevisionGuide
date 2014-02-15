@@ -21,6 +21,11 @@ $user_id = isset($_GET['user_id']) ? $_GET['user_id'] : false;
 $pg_id   = isset($_GET['pg_id'])   ? $_GET['pg_id']   : false;
 //$pg_id   = '2014021607567';
 
+if (!$pg_id || !$user_id) {
+    echo 'need param';
+    exit;
+}
+
 /*
  * 2. パラメータ分析
  */
@@ -34,7 +39,8 @@ foreach ($pg_data as $pg) {
         break;
     }
 }
-if (!$pg) {
+
+if (!$target_pg) {
     echo 'pg match error';
     exit;
 }
@@ -49,10 +55,9 @@ $remember_title =  explode(' ', $pg['title']);
  */
 $ret = saveUserInfo(array($user_id, 'title' => $remember_title));
 
-
 if (!$ret) {
     echo 'write error';
-    exit;
+    epgxit;
 }
 
 echo 'success';
