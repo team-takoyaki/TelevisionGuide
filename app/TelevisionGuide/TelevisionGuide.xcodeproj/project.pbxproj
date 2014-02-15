@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		164FE2D418AF68060066427E /* RecommendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 164FE2D318AF68060066427E /* RecommendViewController.m */; };
+		164FE2D718AFB8710066427E /* AppList.m in Sources */ = {isa = PBXBuildFile; fileRef = 164FE2D618AFB8710066427E /* AppList.m */; };
+		164FE2DB18AFC1B70066427E /* schemes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 164FE2DA18AFC1B70066427E /* schemes.plist */; };
 		5977EED518AA42E000E0974F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5977EED418AA42E000E0974F /* Foundation.framework */; };
 		5977EED718AA42E000E0974F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5977EED618AA42E000E0974F /* CoreGraphics.framework */; };
 		5977EED918AA42E000E0974F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5977EED818AA42E000E0974F /* UIKit.framework */; };
@@ -42,6 +44,9 @@
 /* Begin PBXFileReference section */
 		164FE2D218AF68060066427E /* RecommendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendViewController.h; sourceTree = "<group>"; };
 		164FE2D318AF68060066427E /* RecommendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendViewController.m; sourceTree = "<group>"; };
+		164FE2D518AFB8710066427E /* AppList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppList.h; sourceTree = "<group>"; };
+		164FE2D618AFB8710066427E /* AppList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppList.m; sourceTree = "<group>"; };
+		164FE2DA18AFC1B70066427E /* schemes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = schemes.plist; sourceTree = "<group>"; };
 		5977EED118AA42E000E0974F /* TelevisionGuide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TelevisionGuide.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5977EED418AA42E000E0974F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5977EED618AA42E000E0974F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -100,6 +105,7 @@
 		5977EEC818AA42E000E0974F = {
 			isa = PBXGroup;
 			children = (
+				164FE2DA18AFC1B70066427E /* schemes.plist */,
 				5977EEDA18AA42E000E0974F /* TelevisionGuide */,
 				5977EEF918AA42E000E0974F /* TelevisionGuideTests */,
 				5977EED318AA42E000E0974F /* Frameworks */,
@@ -148,6 +154,8 @@
 				59C8726418AF798D002B94EF /* Program.m */,
 				5977EEEC18AA42E000E0974F /* Images.xcassets */,
 				5977EEDB18AA42E000E0974F /* Supporting Files */,
+				164FE2D518AFB8710066427E /* AppList.h */,
+				164FE2D618AFB8710066427E /* AppList.m */,
 			);
 			path = TelevisionGuide;
 			sourceTree = "<group>";
@@ -269,6 +277,7 @@
 			files = (
 				59C8726A18AF8B90002B94EF /* suntv.png in Resources */,
 				5977EEED18AA42E000E0974F /* Images.xcassets in Resources */,
+				164FE2DB18AFC1B70066427E /* schemes.plist in Resources */,
 				5977EEDF18AA42E000E0974F /* InfoPlist.strings in Resources */,
 				5977EEE818AA42E000E0974F /* Main.storyboard in Resources */,
 			);
@@ -323,6 +332,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5977EEEB18AA42E000E0974F /* ViewController.m in Sources */,
+				164FE2D718AFB8710066427E /* AppList.m in Sources */,
 				5977EEE518AA42E000E0974F /* AppDelegate.m in Sources */,
 				59C8726D18AF9046002B94EF /* RememberViewController.m in Sources */,
 				5977EEE118AA42E000E0974F /* main.m in Sources */,
