@@ -22,10 +22,10 @@
             </objects>
             <point key="canvasLocation" x="325" y="39"/>
         </scene>
-        <!--Recomend View Controller-->
+        <!--Recommend View Controller-->
         <scene sceneID="MvO-ea-465">
             <objects>
-                <tableViewController id="oQL-Yc-kWG" customClass="RecomendViewController" sceneMemberID="viewController">
+                <tableViewController id="oQL-Yc-kWG" customClass="RecommendViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="IIc-F4-Ft4">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
