@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CustomTableView.h"
 
 @interface ViewController : UIViewController
+@property (strong, nonatomic) IBOutlet CustomTableView *tableView;
 
 @end

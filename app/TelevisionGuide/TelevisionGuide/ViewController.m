@@ -8,9 +8,10 @@
 
 #import "ViewController.h"
 #import "AppManager.h"
+#import "CustomTableViewCell.h"
 
 @interface ViewController ()
-
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 @end
 
 @implementation ViewController
@@ -19,29 +20,29 @@
 {
     [super viewDidLoad];
     
-    AppManager *manager = [AppManager sharedManager];
-    NSString *uuid = [manager UUID];
-    NSLog(@"UUID:%@", uuid);
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(onRefresh:) forControlEvents:UIControlEventValueChanged];
+    _refreshControl = refreshControl;
+    [_tableView addSubview:refreshControl];
     
-    [manager updateRecommendWithTarget:self selector:@selector(onUpdate)];
-    
+    [_tableView registerClass:[CustomTableViewCell class] forCellReuseIdentifier:@"CustomCell"];
+   
+    [_tableView setDelegate:_tableView];
+    [_tableView setDataSource:_tableView];
    
 	// Do any additional setup after loading the view, typically from a nib.
-}
-
-- (void)onUpdate
-{
-    AppManager *manager = [AppManager sharedManager];
-    NSArray *recommend = [manager recommend];
-    for (Program *p in recommend) {
-        NSLog(@"%@", [p programTitle]);
-    }
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)onRefresh:(id)sender
+{
+    [_refreshControl beginRefreshing];
+    [_refreshControl endRefreshing];
 }
 
 @end

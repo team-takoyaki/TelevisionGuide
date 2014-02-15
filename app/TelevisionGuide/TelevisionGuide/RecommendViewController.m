@@ -30,6 +30,10 @@
 {
     [super viewDidLoad];
     
+    UIImage *mainTitleImage = [UIImage imageNamed:@"main_title.png"];
+
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:mainTitleImage];
+    [self.navigationController.navigationBar addSubview:imageView];
     
 	// Do any additional setup after loading the view.
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
@@ -111,7 +115,6 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ( [[segue identifier] isEqualToString:@"gotoCellDetail"] ) {
-        ViewController *viewController = [segue destinationViewController];
     }
 }
 
