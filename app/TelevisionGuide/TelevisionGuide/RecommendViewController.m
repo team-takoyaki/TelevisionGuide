@@ -7,14 +7,14 @@
 //
 
 #import "RecommendViewController.h"
+#import "AppManager.h"
 
 @interface RecommendViewController ()
-
-@property NSArray *programArray;
 
 @end
 
 @implementation RecommendViewController
+@synthesize programArray;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -22,6 +22,7 @@
     if (self) {
         // Custom initialization
     }
+    
     return self;
 }
 
@@ -31,9 +32,17 @@
 	// Do any additional setup after loading the view.
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(onRefresh:) forControlEvents:UIControlEventValueChanged];
-//    self.programArray = nil;
-    self.programArray = [NSArray arrayWithObjects:@"東京", @"名古屋", @"大阪", nil];
+    AppManager *manager = [AppManager sharedManager];
+    [manager updateRecommendWithTarget:self selector:@selector(onUpdate)];
+    self.programArray = [manager recommend];
     self.refreshControl = refreshControl;
+}
+
+- (void)onUpdate
+{
+    AppManager *manager = [AppManager sharedManager];
+    self.programArray = [manager recommend];
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -72,7 +81,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
     }
     
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ %i", @"row", indexPath.row];
+    [self updateCell:cell atIndexPath:indexPath];
     return cell;
 }
 
@@ -94,10 +103,23 @@
     }   
 }
 
+- (void) updateCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    // Update Cells
+    Program *p = self.programArray[indexPath.row];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@", [p programTitle]];
+}
+
+- (void) updateVisibleCells {
+    for (UITableViewCell *cell in [self.tableView visibleCells]){
+        [self updateCell:cell atIndexPath:[self.tableView indexPathForCell:cell]];
+    }
+}
+
 
 - (void) onRefresh:(id)sender {
     [self.refreshControl beginRefreshing];
     //この間にデータを表示する処理
+    [self updateVisibleCells];
     [self.refreshControl endRefreshing];
 }
 
