@@ -21,3 +21,35 @@ function loadPgFromJson () {
     }
     return $ret;
 }
+
+function loadUserInfo ($user_id) {
+    $file = getUserFileName ($user_id);
+    if (file_exists($file)) {
+        return unserialize(file_get_contents($file));
+    } else {
+        return false;
+    }
+}
+
+function saveUserInfo ($user_id, $data) {
+    $file = getUserFileName ($user_id);
+    
+    if (file_exists($file)) {
+        $saved_data = loadUserInfo($user_id);
+
+        // title について
+        if (isset($data['title'])) {
+            if (isset($saved_data['title'])) {
+                $data['title'] = array_merge($data['title'], $saved_data['title']);
+            }
+        }
+
+        // ...
+    }
+
+    return file_put_contents($file, seriarize($data));
+}
+
+function getUserFileName ($user_id) {
+    return DATA_DIR.'/user/'.$user_id.'.dat';
+}
