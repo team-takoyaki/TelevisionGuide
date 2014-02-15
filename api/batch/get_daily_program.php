@@ -16,13 +16,13 @@ $url = createUrl($date);
 $program_list = getProgramList($url);
 
 // NHKオンラインのURL追加
-foreach ($program_list as $program) {
-    $program['nhk_online_url'] = NHK_ONLINE_URL.'?'
+for ($i=0, $len=count($program_list); $i<$len; $i++) {
+    $program_list[$i]['nhk_online_url'] = NHK_ONLINE_URL.'?'
         .http_build_query(array(
                                 'a' => '001',
                                 'd' => $date,
-                                'c' => $SERVECE_INDEX[$program['service']['id']],
-                                'e' => $program['event_id']*1,
+                                'c' => $SERVECE_INDEX[$program_list[$i]['service']['id']],
+                                'e' => $program_list[$i]['event_id']*1,                                
                                 ));
 }
 
