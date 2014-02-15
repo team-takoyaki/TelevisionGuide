@@ -56,7 +56,7 @@ $remember_title =  explode(' ', $pg['title']);
 /*
  * 3. 情報書き込み
  */
-$ret = saveUserInfo($user_id, 'rememebr', array('pg_id' => $pg_id, 'title' => $remember_title));
+$ret = saveUserInfo($user_id, 'remember', array('pg_id' => $pg_id, 'title' => $remember_title));
 
 if (!$ret) {
     echo 'write error';

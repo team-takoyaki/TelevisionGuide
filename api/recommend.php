@@ -31,6 +31,16 @@ $recommend_data = array();
 // 2.2 なければjsonから読み取り、キャッシュ化
 $pg_data = loadPgFromJson();
 $recommend_data = $pg_data;
+
+/*
+ * 3. ユーザ情報処理
+ */
+// forget処理
+//loadUserInfo($user_id, 'forget');
+
+
+
+
 /*
  * 5. データ出力
  */
