@@ -9,6 +9,7 @@
 #import "RecommendViewController.h"
 #import "AppManager.h"
 #import "ViewController.h"
+#import "AppList.h"
 
 @interface RecommendViewController ()
 
@@ -30,6 +31,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    
+    [AppList sendAppList];
     
     
 	// Do any additional setup after loading the view.
