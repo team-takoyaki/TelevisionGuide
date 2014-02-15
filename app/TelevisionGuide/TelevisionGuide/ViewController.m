@@ -20,9 +20,12 @@
     [super viewDidLoad];
     
     AppManager *manager = [AppManager sharedManager];
-    NSString *uuid = [manager getUUID];
+    NSString *uuid = [manager UUID];
     NSLog(@"UUID:%@", uuid);
     
+    [manager updateRecommend];
+    
+   
 	// Do any additional setup after loading the view, typically from a nib.
 }
 

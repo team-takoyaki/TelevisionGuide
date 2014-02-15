@@ -23,6 +23,7 @@
 		5977EEFE18AA42E000E0974F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5977EEFC18AA42E000E0974F /* InfoPlist.strings */; };
 		5977EF0018AA42E000E0974F /* TelevisionGuideTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5977EEFF18AA42E000E0974F /* TelevisionGuideTests.m */; };
 		59C8726218AF719A002B94EF /* AppManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 59C8726118AF719A002B94EF /* AppManager.m */; };
+		59C8726518AF798D002B94EF /* Program.m in Sources */ = {isa = PBXBuildFile; fileRef = 59C8726418AF798D002B94EF /* Program.m */; };
 		B24B475CB2024074AB01C022 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C07899F003A242199D49A26F /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +61,8 @@
 		5977EEFF18AA42E000E0974F /* TelevisionGuideTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TelevisionGuideTests.m; sourceTree = "<group>"; };
 		59C8726018AF7199002B94EF /* AppManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppManager.h; sourceTree = "<group>"; };
 		59C8726118AF719A002B94EF /* AppManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppManager.m; sourceTree = "<group>"; };
+		59C8726318AF798D002B94EF /* Program.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Program.h; sourceTree = "<group>"; };
+		59C8726418AF798D002B94EF /* Program.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Program.m; sourceTree = "<group>"; };
 		C07899F003A242199D49A26F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF469E22BE6B491E8F5FD9D7 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -133,6 +136,8 @@
 				5977EEEA18AA42E000E0974F /* ViewController.m */,
 				59C8726018AF7199002B94EF /* AppManager.h */,
 				59C8726118AF719A002B94EF /* AppManager.m */,
+				59C8726318AF798D002B94EF /* Program.h */,
+				59C8726418AF798D002B94EF /* Program.m */,
 				5977EEEC18AA42E000E0974F /* Images.xcassets */,
 				5977EEDB18AA42E000E0974F /* Supporting Files */,
 			);
@@ -305,6 +310,7 @@
 				5977EEE118AA42E000E0974F /* main.m in Sources */,
 				164FE2D418AF68060066427E /* RecomendViewController.m in Sources */,
 				59C8726218AF719A002B94EF /* AppManager.m in Sources */,
+				59C8726518AF798D002B94EF /* Program.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

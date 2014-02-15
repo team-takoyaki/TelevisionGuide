@@ -7,15 +7,21 @@
 //
 
 #import "AppManager.h"
+#import <AFNetworking.h>
+
+#define RECOMMEND_URL @"http://api.team-takoyaki.com/dev/recommend.json"
 
 @interface AppManager()
 - (void)initUUID;
+
 @property (strong, nonatomic, readwrite) NSString *UUID;
+@property (strong, nonatomic) NSMutableArray *recommend;
 @end
 
 @implementation AppManager
 
 @synthesize UUID = _UUID;
+@synthesize recommend = _recommend;
 
 static AppManager* sharedInstance = nil;
  
@@ -34,6 +40,7 @@ static AppManager* sharedInstance = nil;
     AppManager *manager = [super init];
     if (manager) {
         [manager initUUID];
+        _recommend = [[NSMutableArray alloc] init];
     }
     return manager;
 }
@@ -56,6 +63,56 @@ static AppManager* sharedInstance = nil;
 - (id)copyWithZone:(NSZone *)zone
 {
     return self;
+}
+
+- (NSArray *)recommend
+{
+    return (NSArray *)_recommend;
+}
+
+- (void)updateRecommend
+{
+    AFHTTPRequestOperationManager* manager = [AFHTTPRequestOperationManager manager];
+    [manager POST:RECOMMEND_URL parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        // NSLog(@"response: %@", responseObject);
+        NSArray *programs = (NSArray *)responseObject;
+        for (NSDictionary *dict in programs) {
+            Program *program = [[Program alloc] init];
+            NSString *pId = (NSString *)[dict objectForKey:@"id"];
+            [program setProgramId:pId];
+            
+            NSString *pTitle = (NSString *)[dict objectForKey:@"title"];
+            [program setProgramTitle:pTitle];
+            
+            NSString *pSubTitle = (NSString *)[dict objectForKey:@"subtitle"];
+            [program setProgramTitle:pSubTitle];
+            
+            NSString *eId = (NSString *)[dict objectForKey:@"event_id"];
+            [program setEventId:eId];
+            
+            NSString *sTime = (NSString *)[dict objectForKey:@"start_time"];
+            [program setStartTime:sTime];
+            
+            NSString *eTime = (NSString *)[dict objectForKey:@"end_time"];
+            [program setEndTime:eTime];
+            
+            NSDictionary *dict2 = (NSDictionary *)[dict objectForKey:@"service"];
+            NSString *sId = (NSString *)[dict2 objectForKey:@"id"];
+            [program setServiceId:sId];
+            
+            NSString *sName = (NSString *)[dict2 objectForKey:@"name"];
+            [program setServiceName:sName];
+            
+            [_recommend addObject:program];
+        }
+        
+        for (Program *p in _recommend) {
+            NSLog(@"ProgramName: %@", [p programTitle]);
+        }
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
 }
 
 @end

@@ -7,9 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Program.h"
 
 @interface AppManager : NSObject
 + (id)sharedManager;
+- (void)updateRecommend;
+- (NSArray *)recommend;
 
-@property (strong, nonatomic, readonly, getter = getUUID) NSString *UUID;
+@property (strong, nonatomic, readonly) NSString *UUID;
 @end
