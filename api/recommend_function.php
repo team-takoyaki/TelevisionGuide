@@ -1,12 +1,16 @@
 <?php
 require_once '/var/www/html/api/common.conf';
 
-function loadPgFromJson () {
+function loadPgFromJson ($user_id) {
     $get_date1 = strftime('%Y-%m-%d', time());
     $get_date2 = strftime('%Y-%m-%d', strtotime('+1 days',time()));
 
-    $file1 = DATA_DIR.'/pg/'.$get_date1.'.tv.json';
-    $file2 = DATA_DIR.'/pg/'.$get_date2.'.tv.json';
+    if ($user_id !== 'demo') {
+        $file1 = DATA_DIR.'/pg/'.$get_date1.'.tv.json';
+        $file2 = DATA_DIR.'/pg/'.$get_date2.'.tv.json';
+    } else {
+        $file2 = DATA_DIR.'/pg/demo.tv.json';
+    }
 
     $json1 = file_get_contents($file1);
     $data1 = json_decode($json1, true);

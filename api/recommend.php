@@ -29,7 +29,7 @@ $user_id = isset($_GET['user_id']) ? $_GET['user_id'] : false;
 $recommend_data = array();
 // 2.1 キャッシュあればメモリから取得
 // 2.2 なければjsonから読み取り、キャッシュ化
-$pg_data = loadPgFromJson();
+$pg_data = loadPgFromJson($user_id);
 
 // 2.3 各種文字列整形処理
 $pg_data = execEtcProsess($pg_data);
