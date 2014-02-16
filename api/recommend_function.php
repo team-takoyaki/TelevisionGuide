@@ -96,7 +96,7 @@ function execEtcProsess($pg_data) {
             $pg_amfm = '午後';
         }
 
-        $pg_data[$i]['pg_time'] = $pg_amfm.' '.$pg_time;
+        $pg_data[$i]['pg_time'] = $pg_amfm.$pg_time;
         
     }
     return $pg_data;
