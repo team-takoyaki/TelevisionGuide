@@ -64,9 +64,9 @@ static AppManager* sharedInstance = nil;
 
 - (void)initUUID
 {
-//    NSUUID *vendorUUID = [UIDevice currentDevice].identifierForVendor;
-//    [self setUUID:vendorUUID.UUIDString];
-    [self setUUID:@"demo"];
+    NSUUID *vendorUUID = [UIDevice currentDevice].identifierForVendor;
+    [self setUUID:vendorUUID.UUIDString];
+//    [self setUUID:@"demo"];
 }
 
 + (id)allocWithZone:(NSZone *)zone
