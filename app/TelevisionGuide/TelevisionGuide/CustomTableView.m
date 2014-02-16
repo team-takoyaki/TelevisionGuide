@@ -232,7 +232,6 @@
         cell.backgroundView = cellView;
         
         Program *p = _programs[indexPath.row];
-        NSLog(@"%@", p);
         NSURL *url = [NSURL URLWithString:[p programImage]];
         NSData *data = [NSData dataWithContentsOfURL:url];
         
@@ -337,7 +336,9 @@ return;
 //        [manager requestForget:[p programId]];
 //        UIImageView *imageView = (UIImageView *)[backgroundView viewWithTag:555];
 //        [backgroundView bringSubviewToFront:imageView];
-
+        AppManager *manager = [AppManager sharedManager];
+        Program *p = _programs[indexPath.row];
+        [manager requestForget:p.programId];
         [_programs removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationLeft];
     } else if (state == JTTableViewCellEditingStateRight) {
@@ -349,6 +350,10 @@ return;
 //        [manager requestRemember:[p programId]];
 //        UIImageView *imageView = (UIImageView *)[backgroundView viewWithTag:666];
 //        [backgroundView bringSubviewToFront:imageView];
+
+        AppManager *manager = [AppManager sharedManager];
+        Program *p = _programs[indexPath.row];
+        [manager requestRemember:p.programId];
 
         [_programs removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationRight];

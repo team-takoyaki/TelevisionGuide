@@ -468,7 +468,7 @@
 		CGPoint location = [touch locationInView:self.view];
 		NSLog(@"x座標:%f y座標:%f",location.x,location.y);
         
-        if (location.x > 290) {
+        if (location.x > 290 && location.y < 80) {
             _originalFrame = _headerView.frame;
             _originalNextFrame = _nextHeaderView.frame;
             _isSwipe = YES;
