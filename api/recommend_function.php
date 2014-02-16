@@ -9,7 +9,7 @@ function loadPgFromJson ($user_id) {
         $file1 = DATA_DIR.'/pg/'.$get_date1.'.tv.json';
         $file2 = DATA_DIR.'/pg/'.$get_date2.'.tv.json';
     } else {
-        $file2 = DATA_DIR.'/pg/demo.tv.json';
+        $file1 = DATA_DIR.'/pg/demo.tv.json';
     }
 
     $json1 = file_get_contents($file1);
