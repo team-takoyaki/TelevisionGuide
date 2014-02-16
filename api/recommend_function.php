@@ -79,7 +79,7 @@ function getUserFileName ($user_id, $type) {
 function execEtcProsess($pg_data) {
     $today = date('Y-m-d');
     for ($i=0, $len=count($pg_data); $i<$len; $i++) {
-        $pg_data[$i]['pg_icon'] = 'http://www.nhk.or.jp/prog/img/424/424.jpg';
+        $pg_data[$i]['pg_icon'] = $pg_data[$i]['service']['logo_l'];
         $pg_day = date('Y-m-d', strtotime($pg_data[$i]['start_time']));
         $day_diff = day_diff($today, $pg_day);
         if ($day_diff == 0) {
