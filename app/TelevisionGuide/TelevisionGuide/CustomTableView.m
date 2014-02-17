@@ -192,7 +192,6 @@
     
     } else {
 
-        static NSString *cellIdentifier = @"CustomCell";
         CustomTableViewCell *cell = (CustomTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"CustomCell"];
         
 //        cell.textLabel.text = [NSString stringWithFormat:@"%@", (NSString *)object];
@@ -217,9 +216,9 @@
         ////ここを編集
         UIView *cellView = [[UIView alloc] init];
 
-
         UIImage *image = [UIImage imageNamed:@"remember_minai.png"];
         UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+        imageView.frame = CGRectMake(5, 0, imageView.frame.size.width, imageView.frame.size.height);
         [imageView setTag:555];
         [cellView addSubview:imageView];
         
@@ -227,15 +226,12 @@
         UIImageView *imageView2 = [[UIImageView alloc] initWithImage:image2];
         [imageView setTag:666];
         [cellView addSubview:imageView2];
-
         
         cell.backgroundView = cellView;
         
         Program *p = _programs[indexPath.row];
         NSURL *url = [NSURL URLWithString:[p programImage]];
-        NSData *data = [NSData dataWithContentsOfURL:url];
-        
-        [cell setProgramImage:[[UIImage alloc] initWithData:data]];
+        [cell setProgramImage:url];
         [cell setProgramTitle:[NSString stringWithFormat:@"%@", [p programTitle]]];
         [cell setProgramSubTitle:[NSString stringWithFormat:@"%@", [p programSubTitle]]];
         [cell setServiceName:[NSString stringWithFormat:@"%@", [p serviceName]]];
@@ -289,11 +285,6 @@ return;
 - (void)gestureRecognizer:(JTTableViewGestureRecognizer *)gestureRecognizer didEnterEditingState:(JTTableViewCellEditingState)state forRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [self cellForRowAtIndexPath:indexPath];
 
-    UIView *backgroundView = cell.backgroundView;
-
-    UIImageView *imageView1 = (UIImageView *)[backgroundView viewWithTag:555];
-    UIImageView *imageView2 = (UIImageView *)[backgroundView viewWithTag:666];
-
     UIColor *backgroundColor = nil;
     switch (state) {
         case JTTableViewCellEditingStateMiddle:
@@ -301,12 +292,9 @@ return;
             break;
         case JTTableViewCellEditingStateRight:
             backgroundColor = [UIColor whiteColor];
-            
-            [backgroundView bringSubviewToFront:imageView1];
             break;
         default:
             backgroundColor = [UIColor whiteColor];
-            [backgroundView bringSubviewToFront:imageView2];
             break;
     }
     cell.contentView.backgroundColor = [UIColor whiteColor];
@@ -395,6 +383,21 @@ return;
 - (void)gestureRecognizer:(JTTableViewGestureRecognizer *)gestureRecognizer needsReplacePlaceholderForRowAtIndexPath:(NSIndexPath *)indexPath {
     [_programs replaceObjectAtIndex:indexPath.row withObject:self.grabbedObject];
     self.grabbedObject = nil;
+}
+
+- (void)gestureRecognizer:(JTTableViewGestureRecognizer *)gestureRecognizer didChangeContentViewTranslation:(CGPoint)translation forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CustomTableViewCell *cell = (CustomTableViewCell *)[self cellForRowAtIndexPath:indexPath];
+    
+    UIView *backgroundView = cell.backgroundView;
+
+    if (translation.x < 0) {
+        UIImageView *imageView2 = (UIImageView *)[backgroundView viewWithTag:666];
+        [backgroundView bringSubviewToFront:imageView2];
+    } else {
+        UIImageView *imageView1 = (UIImageView *)[backgroundView viewWithTag:555];
+        [backgroundView bringSubviewToFront:imageView1];
+    }
 }
 
 

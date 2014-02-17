@@ -7,6 +7,7 @@
 //
 
 #import "CustomTableViewCell.h"
+#import "UIImageView+WebCache.h"
 
 @interface CustomTableViewCell()
 @property (nonatomic, strong) UIImageView *programImageView;
@@ -83,9 +84,9 @@
     // Configure the view for the selected state
 }
 
-- (void)setProgramImage:(UIImage *)image
+- (void)setProgramImage:(NSURL *)url
 {
-    [self.programImageView setImage:image];
+    [self.programImageView setImageWithURL:url placeholderImage:nil options:SDWebImageCacheMemoryOnly];
 }
 
 - (void)setServiceName:(NSString *)text

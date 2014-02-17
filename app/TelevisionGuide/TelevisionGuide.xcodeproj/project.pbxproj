@@ -29,6 +29,8 @@
 		5977EEF618AA42E000E0974F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5977EED818AA42E000E0974F /* UIKit.framework */; };
 		5977EEFE18AA42E000E0974F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5977EEFC18AA42E000E0974F /* InfoPlist.strings */; };
 		5977EF0018AA42E000E0974F /* TelevisionGuideTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5977EEFF18AA42E000E0974F /* TelevisionGuideTests.m */; };
+		59BE081C18B25A7A00DE98D7 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59BE081B18B25A7A00DE98D7 /* ImageIO.framework */; };
+		59BE081E18B25A8700DE98D7 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59BE081D18B25A8700DE98D7 /* MapKit.framework */; };
 		59C8726218AF719A002B94EF /* AppManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 59C8726118AF719A002B94EF /* AppManager.m */; };
 		59C8726518AF798D002B94EF /* Program.m in Sources */ = {isa = PBXBuildFile; fileRef = 59C8726418AF798D002B94EF /* Program.m */; };
 		59C8726A18AF8B90002B94EF /* suntv.png in Resources */ = {isa = PBXBuildFile; fileRef = 59C8726918AF8B90002B94EF /* suntv.png */; };
@@ -60,16 +62,16 @@
 /* Begin PBXFileReference section */
 		164FE2D518AFB8710066427E /* AppList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppList.h; sourceTree = "<group>"; };
 		164FE2D618AFB8710066427E /* AppList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppList.m; sourceTree = "<group>"; };
-		164FE2DA18AFC1B70066427E /* schemes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = schemes.plist; sourceTree = "<group>"; };
+		164FE2DA18AFC1B70066427E /* schemes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = schemes.plist; path = ../../schemes.plist; sourceTree = "<group>"; };
 		164FE2DC18AFD35C0066427E /* MusicList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicList.h; sourceTree = "<group>"; };
 		164FE2DD18AFD35C0066427E /* MusicList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicList.m; sourceTree = "<group>"; };
 		164FE2DF18AFD5030066427E /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		168C9C5A18B002A1008721CF /* JTTableViewGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JTTableViewGestureRecognizer.h; path = TelevisionGuide/JTTableViewGestureRecognizer.h; sourceTree = "<group>"; };
-		168C9C5B18B002A1008721CF /* JTTableViewGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JTTableViewGestureRecognizer.m; path = TelevisionGuide/JTTableViewGestureRecognizer.m; sourceTree = "<group>"; };
-		168C9C5C18B002A1008721CF /* JTTransformableTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JTTransformableTableViewCell.h; path = TelevisionGuide/JTTransformableTableViewCell.h; sourceTree = "<group>"; };
-		168C9C5D18B002A1008721CF /* JTTransformableTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JTTransformableTableViewCell.m; path = TelevisionGuide/JTTransformableTableViewCell.m; sourceTree = "<group>"; };
-		168C9C5E18B002A1008721CF /* UIColor+JTGestureBasedTableViewHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+JTGestureBasedTableViewHelper.h"; path = "TelevisionGuide/UIColor+JTGestureBasedTableViewHelper.h"; sourceTree = "<group>"; };
-		168C9C5F18B002A1008721CF /* UIColor+JTGestureBasedTableViewHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+JTGestureBasedTableViewHelper.m"; path = "TelevisionGuide/UIColor+JTGestureBasedTableViewHelper.m"; sourceTree = "<group>"; };
+		168C9C5A18B002A1008721CF /* JTTableViewGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTTableViewGestureRecognizer.h; sourceTree = "<group>"; };
+		168C9C5B18B002A1008721CF /* JTTableViewGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTTableViewGestureRecognizer.m; sourceTree = "<group>"; };
+		168C9C5C18B002A1008721CF /* JTTransformableTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTTransformableTableViewCell.h; sourceTree = "<group>"; };
+		168C9C5D18B002A1008721CF /* JTTransformableTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTTransformableTableViewCell.m; sourceTree = "<group>"; };
+		168C9C5E18B002A1008721CF /* UIColor+JTGestureBasedTableViewHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+JTGestureBasedTableViewHelper.h"; sourceTree = "<group>"; };
+		168C9C5F18B002A1008721CF /* UIColor+JTGestureBasedTableViewHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+JTGestureBasedTableViewHelper.m"; sourceTree = "<group>"; };
 		16A16D9418AFE901006FE0AB /* YouTube.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouTube.h; sourceTree = "<group>"; };
 		16A16D9518AFE901006FE0AB /* YouTube.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YouTube.m; sourceTree = "<group>"; };
 		5977EED118AA42E000E0974F /* TelevisionGuide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TelevisionGuide.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -91,6 +93,8 @@
 		5977EEFB18AA42E000E0974F /* TelevisionGuideTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TelevisionGuideTests-Info.plist"; sourceTree = "<group>"; };
 		5977EEFD18AA42E000E0974F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5977EEFF18AA42E000E0974F /* TelevisionGuideTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TelevisionGuideTests.m; sourceTree = "<group>"; };
+		59BE081B18B25A7A00DE98D7 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		59BE081D18B25A8700DE98D7 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		59C8726018AF7199002B94EF /* AppManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppManager.h; sourceTree = "<group>"; };
 		59C8726118AF719A002B94EF /* AppManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppManager.m; sourceTree = "<group>"; };
 		59C8726318AF798D002B94EF /* Program.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Program.h; sourceTree = "<group>"; };
@@ -123,6 +127,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59BE081E18B25A8700DE98D7 /* MapKit.framework in Frameworks */,
+				59BE081C18B25A7A00DE98D7 /* ImageIO.framework in Frameworks */,
 				59E9DE6B18B02A5B00A0A6CC /* AddressBookUI.framework in Frameworks */,
 				59E9DE6218B0123100A0A6CC /* CoreLocation.framework in Frameworks */,
 				164FE2E018AFD5030066427E /* MediaPlayer.framework in Frameworks */,
@@ -149,13 +155,6 @@
 		5977EEC818AA42E000E0974F = {
 			isa = PBXGroup;
 			children = (
-				168C9C5A18B002A1008721CF /* JTTableViewGestureRecognizer.h */,
-				168C9C5B18B002A1008721CF /* JTTableViewGestureRecognizer.m */,
-				168C9C5C18B002A1008721CF /* JTTransformableTableViewCell.h */,
-				168C9C5D18B002A1008721CF /* JTTransformableTableViewCell.m */,
-				168C9C5E18B002A1008721CF /* UIColor+JTGestureBasedTableViewHelper.h */,
-				168C9C5F18B002A1008721CF /* UIColor+JTGestureBasedTableViewHelper.m */,
-				164FE2DA18AFC1B70066427E /* schemes.plist */,
 				5977EEDA18AA42E000E0974F /* TelevisionGuide */,
 				5977EEF918AA42E000E0974F /* TelevisionGuideTests */,
 				5977EED318AA42E000E0974F /* Frameworks */,
@@ -176,6 +175,8 @@
 		5977EED318AA42E000E0974F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				59BE081D18B25A8700DE98D7 /* MapKit.framework */,
+				59BE081B18B25A7A00DE98D7 /* ImageIO.framework */,
 				59E9DE6A18B02A5B00A0A6CC /* AddressBookUI.framework */,
 				59E9DE6818B0277500A0A6CC /* AddressBook.framework */,
 				59E9DE6618B01C0700A0A6CC /* SystemConfiguration.framework */,
@@ -209,6 +210,12 @@
 				59C8726118AF719A002B94EF /* AppManager.m */,
 				59C8726318AF798D002B94EF /* Program.h */,
 				59C8726418AF798D002B94EF /* Program.m */,
+				168C9C5A18B002A1008721CF /* JTTableViewGestureRecognizer.h */,
+				168C9C5B18B002A1008721CF /* JTTableViewGestureRecognizer.m */,
+				168C9C5C18B002A1008721CF /* JTTransformableTableViewCell.h */,
+				168C9C5D18B002A1008721CF /* JTTransformableTableViewCell.m */,
+				168C9C5E18B002A1008721CF /* UIColor+JTGestureBasedTableViewHelper.h */,
+				168C9C5F18B002A1008721CF /* UIColor+JTGestureBasedTableViewHelper.m */,
 				5977EEEC18AA42E000E0974F /* Images.xcassets */,
 				5977EEDB18AA42E000E0974F /* Supporting Files */,
 				164FE2D518AFB8710066427E /* AppList.h */,
@@ -262,6 +269,7 @@
 				59E9DE5F18B00D4E00A0A6CC /* remember_title_2.png */,
 				59C8726E18AFBA54002B94EF /* main_title.png */,
 				59C8726918AF8B90002B94EF /* suntv.png */,
+				164FE2DA18AFC1B70066427E /* schemes.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -417,7 +425,6 @@
 				5977EEE118AA42E000E0974F /* main.m in Sources */,
 				164FE2DE18AFD35C0066427E /* MusicList.m in Sources */,
 				168C9C6018B002A1008721CF /* JTTableViewGestureRecognizer.m in Sources */,
-				164FE2D418AF68060066427E /* RecommendViewController.m in Sources */,
 				59C8727518AFC163002B94EF /* CustomTableViewCell.m in Sources */,
 				59C8726218AF719A002B94EF /* AppManager.m in Sources */,
 				59E9DE6518B0128D00A0A6CC /* Location.m in Sources */,

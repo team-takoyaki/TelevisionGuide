@@ -19,6 +19,7 @@
 @property (nonatomic) CGPoint touchBeganPoint;
 @property (nonatomic) CGRect originalNextFrame;
 @property (nonatomic) CGRect originalFrame;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 @end
 
 @implementation ViewController
@@ -44,7 +45,7 @@
 //    [refreshControl addTarget:self action:@selector(onRefresh:) forControlEvents:UIControlEventValueChanged];
 //    _refreshControl = refreshControl;
 //    [_tableView addSubview:refreshControl];
-//    
+//
 //    [_tableView registerClass:[CustomTableViewCell class] forCellReuseIdentifier:@"CustomCell"];
 //   
 //    [_tableView setDelegate:_tableView];
@@ -136,6 +137,9 @@
     
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(onRefresh:) forControlEvents:UIControlEventValueChanged];
+    _refreshControl = refreshControl;
+    [_tableView addSubview:refreshControl];
+    
     [_tableView registerClass:[CustomTableViewCell class] forCellReuseIdentifier:@"CustomCell"];
     
     self.tableView.separatorStyle  = UITableViewCellSeparatorStyleNone;
@@ -412,9 +416,13 @@
     
     [self.tableView reloadData];
     
-//    if (self.refreshControl.refreshing == YES) {
-//         [self.refreshControl endRefreshing];
-//    }
+    if (self.tableView.programs.count > 0) {
+        self.tableView.separatorStyle  = UITableViewCellSeparatorStyleSingleLine;
+    }
+    
+    if (self.refreshControl.refreshing == YES) {
+         [self.refreshControl endRefreshing];
+    }
 }
 
 - (void)updateCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
@@ -484,6 +492,9 @@
 //		NSLog(@"x座標:%f y座標:%f",location.x,location.y);
         if (_isSwipe) {
             float moveX = _touchBeganPoint.x - location.x;
+            if (moveX < 0) {
+                return;
+            }
             NSLog(@"moveX:%f", moveX);
             _headerView.frame = CGRectMake(_originalFrame.origin.x - moveX, _originalFrame.origin.y, _originalFrame.size.width, _originalFrame.size.height);
             

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface CustomTableViewCell : UITableViewCell
-- (void)setProgramImage:(UIImage *)image;
+- (void)setProgramImage:(NSURL *)url;
 - (void)setServiceName:(NSString *)text;
 - (void)setProgramDate:(NSString *)text;
 - (void)setProgramTime:(NSString *)text;
